@@ -7,7 +7,6 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title> @yield('title')</title>
-
   @yield('css_script')
 
 </head>
@@ -15,8 +14,14 @@
 @include('includes.front-end.header')
 
 <main><!-- start main -->
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="{{URL::asset('/images/eng-logo.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
+        ระบบจองใช้ยานพาหนะ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยนเรศวร
+      </a>
+    </nav>
     <section class="container">
-         @yield('content')
+        @yield('content')
     </section>
 </main><!-- end main -->
 <!-- Footer - start -->

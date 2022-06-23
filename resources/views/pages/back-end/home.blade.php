@@ -2,7 +2,7 @@
 @section('title')
     Home Backend
 @stop
-@section('css_script')
+-@section('css_script')
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 @endsection
 
