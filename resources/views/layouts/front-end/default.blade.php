@@ -14,11 +14,15 @@
 @include('includes.front-end.header')
 
 <main><!-- start main -->
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-expand navbar-light bg-light">
       <a class="navbar-brand" href="#">
         <img src="{{URL::asset('/images/eng-logo.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
         ระบบจองใช้ยานพาหนะ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยนเรศวร
       </a>
+      
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        @yield('Auth')
+      </div>
     </nav>
     <section class="container">
         @yield('content')

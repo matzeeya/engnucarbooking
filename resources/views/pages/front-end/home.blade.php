@@ -6,6 +6,21 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 @endsection
 
+@section('Auth')
+  @if(Auth::user()!=null)
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{\Auth::user()->name." ".\Auth::user()->lastname." (".\Auth::user()->usr_lvl.")"}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+        </div>
+      </li>
+    </ul>
+  @endif
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -20,9 +35,9 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <!--<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Logout
-                </a>
+                </a>-->
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
