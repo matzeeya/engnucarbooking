@@ -20,5 +20,6 @@ class CalendarController extends Controller
     }
     return $events;
     return view('calendar.index', ['events' => $events]);
-}
+    //return view('calendar.index')->with('events',$events);
+  }
 }
