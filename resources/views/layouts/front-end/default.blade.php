@@ -15,8 +15,17 @@
 @include('includes.front-end.header')
 
 <main><!-- start main -->
-  <section class="container">
-    @yield('content')
+  <section class="container-fluid">
+  <div class="row">
+    @if(Auth::user()!=null)
+    <div class="col-sm-3">
+        @include('includes.front-end.sidebar')
+    </div>
+    @endif
+    <div class="col">
+        @yield('content')
+    </div>
+  </div>
   </section>
 </main><!-- end main -->
 <!-- Footer - start -->
