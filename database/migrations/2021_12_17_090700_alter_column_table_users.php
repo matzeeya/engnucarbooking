@@ -24,7 +24,7 @@ class AlterColumnTableUsers extends Migration
             $table->string('firstname')->nullable($value = true);
             $table->string('lastname')->nullable($value = true);
             $table->string('usr_lvl')->default('customer');
-            $table->integer('active')->default(0); //not login
+            $table->integer('active')->default(1); //not login
         });
     }
 

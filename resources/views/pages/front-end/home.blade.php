@@ -15,6 +15,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+        </form>
         </div>
       </li>
     </ul>
@@ -34,15 +37,11 @@
                     @endif
                 </div>
             </div>
-            <div class="col-md-4">
-                <!--<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Logout
-                </a>-->
-
+            <!--<div class="col-md-4">
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                 </form>
-            </div>
+            </div>-->
         </div>
     </div>
 

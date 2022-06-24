@@ -29,26 +29,26 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
-        /*
-        $this->app->bind(
-            RegisterResponseContract::class,
-            RegisterResponse::class
-        );*/
+      //
+      /*
+      $this->app->bind(
+          RegisterResponseContract::class,
+          RegisterResponse::class
+      );*/
 
-        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
-            public function toResponse($request)
-            {
-                $user = Auth::user();
-                //$user = User::find(Auth::id());
+      $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+        public function toResponse($request)
+        {
+          $user = Auth::user();
+          //$user = User::find(Auth::id());
 
-                if($user->usr_lvl == 'customer'){
-                    return redirect()->route('default-home');
-                }else{
-                    return redirect()->route('dashboard');
-                }
-            }
-        });
+          if($user->usr_lvl == 'customer'){
+            return redirect()->route('default-home');
+          }else{
+            return redirect()->route('dashboard');
+          }
+        }
+      });
     }
 
     /**
