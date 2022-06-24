@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,6 @@ Route::get('/home',function(){
 Route::get('/dashboard',function(){
     return view('pages.back-end.home');
 })->name('dashboard');
+
+// Calendar routes
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');

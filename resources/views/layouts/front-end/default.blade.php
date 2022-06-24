@@ -23,12 +23,12 @@
 <main><!-- start main -->
   <section class="container-fluid">
     <div class="row">
-      @if(Auth::user()!=null)
-      <div class="col-sm-3">
+      <div class="col-sm-2">
+        @if(Auth::user()!=null)
           @include('includes.front-end.sidebar')
+        @endif
       </div>
-      @endif
-      <div class="col">
+      <div class="col-sm-7">
           @yield('content')
       </div>
     </div>
