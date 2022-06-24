@@ -23,7 +23,7 @@ class AlterColumnTableUsers extends Migration
             $table->string('domain')->nullable(true);
             $table->string('firstname')->nullable($value = true);
             $table->string('lastname')->nullable($value = true);
-            $table->string('usr_lvl')->default('customer');
+            $table->string('usr_lvl')->default('member');
             $table->integer('active')->default(1); //not login
         });
     }

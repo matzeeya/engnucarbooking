@@ -42,7 +42,7 @@ class FortifyServiceProvider extends ServiceProvider
           $user = Auth::user();
           //$user = User::find(Auth::id());
 
-          if($user->usr_lvl == 'customer'){
+          if($user->usr_lvl == 'member'){
             return redirect()->route('default-home');
           }else{
             return redirect()->route('dashboard');
