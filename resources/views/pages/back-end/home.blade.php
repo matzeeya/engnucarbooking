@@ -262,7 +262,8 @@
               $('#calendar').fullCalendar('renderEvent', {
                 'title': response.title,
                 'start' : response.start,
-                'end'  : response.end
+                'end'  : response.end,
+                'color' : response.color
               });
               $('#booking_number').val('');
               $('#title').val('');
