@@ -47,6 +47,34 @@
             <span id="titleError" class="text-danger"></span>
           </div>
           <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="start_date" class="col-form-label">start:</label>
+                <input type="text" class="form-control" id="start_date" disabled>
+                <span id="startDateError" class="text-danger"></span>
+              </div>
+              <div class="col">
+                <label for="start_time" class="col-form-label">time:</label>
+                <input type="text" class="form-control" id="start_time">
+                <span id="startTimeError" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="end_date" class="col-form-label">end:</label>
+                <input type="text" class="form-control" id="end_date" disabled>
+                <span id="endDateError" class="text-danger"></span>
+              </div>
+              <div class="col">
+                <label for="end_time" class="col-form-label">time:</label>
+                <input type="text" class="form-control" id="end_time">
+                <span id="endTimeError" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
             <label for="detail" class="col-form-label">detail:</label>
             <textarea class="form-control" id="detail"></textarea>
             <span id="detailError" class="text-danger"></span>
@@ -138,9 +166,13 @@
       selectHelper: true,
       select: function(start, end, allDays) {
         $('#bookingModal').modal('toggle');
+        $('#start_date').val(moment(start).format('YYYY-MM-DD'));
+        $('#end_date').val(moment(end).subtract(1, 'days').format('YYYY-MM-DD'));
+        /*$('#start_time').val(moment().format('h:mm:ss a'));
+        $('#end_time').val(moment().format('h:mm:ss a'));*/
         $('#saveBtn').click(function() {
           var title = $('#title').val();
-          var start_date = moment(start).format('YYYY-MM-DD');
+          var start_date = $('#start_date').val();
           var end_date = moment(end).format('YYYY-MM-DD');
 
           $.ajax({
@@ -157,6 +189,7 @@
                 'start' : response.start,
                 'end'  : response.end
               });
+              $('#title').val('');
             },
             error:function(error)
             {
