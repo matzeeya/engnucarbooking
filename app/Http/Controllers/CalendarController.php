@@ -32,9 +32,17 @@ class CalendarController extends Controller
       ]);
       
       $booking = Booking::create([
+        'booking_number' => $request->booking_number,
+        'user' => $request->username,
         'title' => $request->title,
         'start_date' => $request->start_date,
         'end_date' => $request->end_date,
+        'detail' => $request->detail,
+        'vehicle' => $request->vehicle,
+        'travelers' => $request->travelers,
+        'place' => $request->place,
+        'location' => $request->location,
+        'phone' => $request->phone,
       ]);
 
       return response()->json([

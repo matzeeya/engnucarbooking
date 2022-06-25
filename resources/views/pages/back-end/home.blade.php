@@ -35,16 +35,36 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Booking Title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการจอง</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <!-- form control -->
         <form>
           <div class="mb-3">
-            <label for="title" class="col-form-label">title:</label>
+            <div class="row">
+              <div class="col">
+                <input type="hidden" class="form-control" id="username" value="{{\Auth::user()->username}}">
+                <label for="booking_number" class="col-form-label">Booking Number:</label>
+                <input type="text" class="form-control" id="booking_number" required>
+                <span id="bookingNumberError" class="text-danger"></span>
+              </div>
+              <div class="col">
+                <label for="phone" class="col-form-label">เบอร์ภายใน:</label>
+                <input type="text" class="form-control" id="phone">
+                <span id="phoneError" class="text-danger"></span>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="title" class="col-form-label">หัวข้อ:</label>
             <input type="text" class="form-control" id="title">
             <span id="titleError" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label for="detail" class="col-form-label">รายละเอียด:</label>
+            <textarea class="form-control" id="detail"></textarea>
+            <span id="detailError" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <div class="row">
@@ -75,9 +95,77 @@
             </div>
           </div>
           <div class="mb-3">
-            <label for="detail" class="col-form-label">detail:</label>
-            <textarea class="form-control" id="detail"></textarea>
-            <span id="detailError" class="text-danger"></span>
+            <div class="row">
+              <div class="col">
+                <label for="vehicle" class="col-form-label">ประเภทของรถ:</label>
+                <select class="form-select" id="vehicle" aria-label="Default select example">
+                  <option selected>กรุณาเลือกประเภทรถที่ต้องการจอง</option>
+                  <option value="1">รถตู้</option>
+                  <option value="2">รถกระบะ</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="travelers" class="col-form-label">จำนวนผู้โดยสาร:</label>
+                <input type="text" class="form-control" id="travelers">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="place" class="col-form-label">ขอบเขตการใช้งาน:</label>
+                <select class="form-select" id="place" aria-label="Default select example">
+                  <option selected>กรุณาเลือกขอบเขตการใช้งาน</option>
+                  <option value="1">ภายในมหาวิทยาลัย</option>
+                  <option value="2">ภายนอกมหาวิทยาลัย</option>
+                  <option value="3">ภายในจังหวัด</option>
+                  <option value="4">ภายนอกจังหวัด</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="location" class="col-form-label">สถานที่ปลายทาง:</label>
+                <input type="text" class="form-control" id="location">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                เพิ่มเติม:
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="option1">
+                  <label class="form-check-label" for="option1">
+                    น้ำมันเต็มถัง
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="option2">
+                  <label class="form-check-label" for="option2">
+                    เครื่องเสียง
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="useto1">
+                  <label class="form-check-label" for="useto1">
+                    จองให้ผู้อื่น
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="useto2">
+                  <label class="form-check-label" for="useto2">
+                    จองใช้งานเอง
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
         <!-- End form control -->
@@ -107,42 +195,9 @@
         </div>
       </div>
       <!-- End fullcalendar -->
-      <!-- table car list -->
-      <div class="col-md-11 col-md-offset-2">
-        <div class="list-group w-auto">
-          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">List group item heading</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">now</small>
-            </div>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">Another title here</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph that goes a little longer so it wraps to a new line.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">3d</small>
-            </div>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-            <div class="d-flex gap-2 w-100 justify-content-between">
-              <div>
-                <h6 class="mb-0">Third heading</h6>
-                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-              </div>
-              <small class="opacity-50 text-nowrap">1w</small>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!-- End table car list -->
+      <!-- table booking list -->
+        @include('layout.booking')
+      <!-- End table booking list -->
     </div>
 </div>
 
@@ -171,15 +226,35 @@
         /*$('#start_time').val(moment().format('h:mm:ss a'));
         $('#end_time').val(moment().format('h:mm:ss a'));*/
         $('#saveBtn').click(function() {
+          var booking_number = $('#booking_number').val();
+          var username = $('#username').val();
           var title = $('#title').val();
           var start_date = $('#start_date').val();
           var end_date = moment(end).format('YYYY-MM-DD');
+          var detail = $('#detail').val();
+          var vehicle = $('#vehicle').val();
+          var travelers = $('#travelers').val();
+          var place = $('#place').val();
+          var location = $('#location').val();
+          var phone = $('#phone').val();
 
           $.ajax({
             url:"{{ route('dashboard.store') }}",
             type:"POST",
             dataType:'json',
-            data:{ title, start_date, end_date  },
+            data:{ 
+              booking_number, 
+              username, 
+              title, 
+              start_date, 
+              end_date, 
+              detail, 
+              vehicle, 
+              travelers, 
+              place, 
+              location,
+              phone 
+            },
             success:function(response)
             {
               console.log(response);
@@ -189,7 +264,11 @@
                 'start' : response.start,
                 'end'  : response.end
               });
+              $('#booking_number').val('');
               $('#title').val('');
+              $('#detail').val('');
+              $('#travelers').val('');
+              $('#location').val('');
             },
             error:function(error)
             {
@@ -197,9 +276,12 @@
                 $('#titleError').html(error.responseJSON.errors.title);
               }
             },
-        });
+          });
         })
       }
+    });
+    $("#bookingModal").on("hidden.bs.modal", function () {
+      $('#saveBtn').unbind();
     });
   });
 </script>
