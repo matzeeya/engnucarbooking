@@ -18,8 +18,8 @@ class CalendarController extends Controller
         'end' => $booking->end_date,
       ];
     }
-    return $events;
-    return view('calendar.index', ['events' => $events]);
-    //return view('calendar.index')->with('events',$events);
+    //return $events;
+    //return view('calendar.index', ['events' => $events]);
+    return view('pages.back-end.home', ['events' => $events]);
   }
 }

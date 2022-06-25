@@ -42,7 +42,7 @@
           </div>
           <hr>
           <div class="d-flex text-muted pt-3">
-            @include('calendar.index')
+            <!--@include('calendar.index')-->
           </div>
         </div>
       </div>

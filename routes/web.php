@@ -22,9 +22,10 @@ Route::get('/home',function(){
     return view('pages.front-end.home');
 })->name('default-home');
 
-Route::get('/dashboard',function(){
+/*Route::get('/dashboard',function(){
     return view('pages.back-end.home');
-})->name('dashboard');
+})->name('dashboard');*/
 
 // Calendar routes
-Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+Route::get('/dashboard', [CalendarController::class, 'index'])->name('dashboard');
+//Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
