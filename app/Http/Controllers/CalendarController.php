@@ -12,11 +12,20 @@ class CalendarController extends Controller
     $events = array();
     $bookings = Booking::all(); 
     foreach($bookings as $booking) {
+      $color = null;
+      if($booking->status == 0) {
+        $color = '#F88133';
+      }else if($booking->status == 1){
+        $color = '#12B604';
+      }else{
+        $color = '#D80038';
+      }
       $events[] = [
         'id'   => $booking->id,
         'title' => $booking->title,
         'start' => $booking->start_date,
         'end' => $booking->end_date,
+        'color' => $color
       ];
     }
     //return $events;
@@ -45,11 +54,20 @@ class CalendarController extends Controller
         'phone' => $request->phone,
       ]);
 
+      $color = null;
+      if($booking->status == 0) {
+        $color = '#F88133';
+      }else if($booking->status == 1){
+        $color = '#12B604';
+      }else{
+        $color = '#D80038';
+      }
       return response()->json([
         'id' => $booking->id,
         'start' => $booking->start_date,
         'end' => $booking->end_date,
         'title' => $booking->title,
+        'color' => $color
       ]);
     }
 }
