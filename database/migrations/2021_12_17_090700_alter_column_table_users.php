@@ -23,7 +23,11 @@ class AlterColumnTableUsers extends Migration
             $table->string('domain')->nullable(true);
             $table->string('firstname')->nullable($value = true);
             $table->string('lastname')->nullable($value = true);
+            $table->string('phone')->nullable(true); //เบอร์ติดต่อ
+            $table->integer('department')->nullable(true); //รหัสภาควิชา
+            $table->integer('branch')->nullable(true); //รหัสสาขาวิชา
             $table->string('usr_lvl')->default('member');
+            $table->integer('usr_type')->default(4); //ประเภทผู้ใช้: 1:ผู้ดูแลระบบ / 2:เจ้าหน้าที่ / 3:คนขับรถ / 4:ผู้ใช้
             $table->integer('active')->default(1); //not login
         });
     }

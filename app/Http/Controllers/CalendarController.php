@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-  public function index()
+  public function index() //แสดงผลการจอง
   {
     $events = array();
     $bookings = Booking::all(); 
     foreach($bookings as $booking) {
       $events[] = [
+        'id'   => $booking->id,
         'title' => $booking->title,
         'start' => $booking->start_date,
         'end' => $booking->end_date,
@@ -23,7 +24,7 @@ class CalendarController extends Controller
     return view('pages.back-end.home', ['events' => $events]);
   }
 
-  public function store(Request $request)
+  public function store(Request $request) //เพิ่มรายการจอง
     {
       //return $request->all();
       $request->validate([
