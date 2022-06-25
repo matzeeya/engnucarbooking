@@ -67,7 +67,7 @@ class CalendarController extends Controller
         'start' => $booking->start_date,
         'end' => $booking->end_date,
         'title' => $booking->title,
-        'color' => $color
+        'color' => $color ? $color: '',
       ]);
     }
     
