@@ -70,4 +70,31 @@ class CalendarController extends Controller
         'color' => $color
       ]);
     }
+    
+    public function show(Request $request ,$id)
+    {
+      $data = array();
+      $booking = Booking::find($id);
+      if(! $booking) {
+        return response()->json([
+          'error' => 'Unable to locate the event'
+        ], 404);
+      }
+      foreach($booking as $obj) {
+        $data[] = [
+          'booking_number' => $obj->booking_number,
+          'user' => $obj->username,
+          'title' => $obj->title,
+          'start_date' => $obj->start_date,
+          'end_date' => $obj->end_date,
+          'detail' => $obj->detail,
+          'vehicle' => $obj->vehicle,
+          'travelers' => $obj->travelers,
+          'place' => $obj->place,
+          'location' => $obj->location,
+          'phone' => $obj->phone,
+        ];
+      }
+      return response()->json($data);
+    }
 }

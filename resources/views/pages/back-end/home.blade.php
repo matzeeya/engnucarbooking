@@ -31,7 +31,7 @@
 
 @section('content')
 <!--Modal -->
-<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="bookingModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -278,6 +278,11 @@
             },
           });
         })
+      },
+      eventClick: function(event){
+        var id = event.id;
+        console.log(id);
+        $('#bookingModal').modal('toggle');
       }
     });
     $("#bookingModal").on("hidden.bs.modal", function () {
