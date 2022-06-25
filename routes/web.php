@@ -28,4 +28,5 @@ Route::get('/home',function(){
 
 // Calendar routes
 Route::get('/dashboard', [CalendarController::class, 'index'])->name('dashboard');
+Route::post('/dashboard/store', [CalendarController::class, 'store'])->name('dashboard.store');
 //Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');

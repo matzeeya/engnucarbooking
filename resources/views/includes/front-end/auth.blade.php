@@ -1,4 +1,4 @@
-@extends('layouts.front-end.header')
+<!--@extends('includes.front-end.header')
 @section('Auth')
   @if(Auth::user()!=null)
     <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -14,4 +14,4 @@
       @csrf
     </form>
   @endif
-@endsection
+@endsection-->

@@ -22,4 +22,25 @@ class CalendarController extends Controller
     //return view('calendar.index', ['events' => $events]);
     return view('pages.back-end.home', ['events' => $events]);
   }
+
+  public function store(Request $request)
+    {
+      //return $request->all();
+      $request->validate([
+        'title' => 'required|string'
+      ]);
+      
+      $booking = Booking::create([
+        'title' => $request->title,
+        'start_date' => $request->start_date,
+        'end_date' => $request->end_date,
+      ]);
+
+      return response()->json([
+        'id' => $booking->id,
+        'start' => $booking->start_date,
+        'end' => $booking->end_date,
+        'title' => $booking->title,
+      ]);
+    }
 }

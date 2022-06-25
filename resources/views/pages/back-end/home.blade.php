@@ -3,6 +3,7 @@
     Home backend
 @stop
 @section('css_script')
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -11,7 +12,56 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 
+@section('Auth')
+  @if(Auth::user()!=null)
+    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        {{\Auth::user()->name." ".\Auth::user()->lastname." (".\Auth::user()->usr_lvl.")"}}
+        <img src="{{URL::asset('/images/user.png')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+      </a>
+      <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a></li>
+      </ul>
+      @csrf
+    </form>
+  @endif
+@endsection
+
 @section('content')
+<!--Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Booking Title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- form control -->
+        <form>
+          <div class="mb-3">
+            <label for="title" class="col-form-label">title:</label>
+            <input type="text" class="form-control" id="title">
+            <span id="titleError" class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label for="detail" class="col-form-label">detail:</label>
+            <textarea class="form-control" id="detail"></textarea>
+            <span id="detailError" class="text-danger"></span>
+          </div>
+        </form>
+        <!-- End form control -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="saveBtn" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
 <div class="container">
     <div class="row">
       <!-- fullcalendar -->
@@ -70,6 +120,12 @@
 
 <script>
   $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
     var booking = @json($events);
     $('#calendar').fullCalendar({
       header: {
@@ -81,7 +137,35 @@
       selectable: true,
       selectHelper: true,
       select: function(start, end, allDays) {
+        $('#bookingModal').modal('toggle');
+        $('#saveBtn').click(function() {
+          var title = $('#title').val();
+          var start_date = moment(start).format('YYYY-MM-DD');
+          var end_date = moment(end).format('YYYY-MM-DD');
 
+          $.ajax({
+            url:"{{ route('dashboard.store') }}",
+            type:"POST",
+            dataType:'json',
+            data:{ title, start_date, end_date  },
+            success:function(response)
+            {
+              console.log(response);
+              $('#bookingModal').modal('hide')
+              $('#calendar').fullCalendar('renderEvent', {
+                'title': response.title,
+                'start' : response.start,
+                'end'  : response.end
+              });
+            },
+            error:function(error)
+            {
+              if(error.responseJSON.errors) {
+                $('#titleError').html(error.responseJSON.errors.title);
+              }
+            },
+        });
+        })
       }
     });
   });
