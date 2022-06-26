@@ -283,7 +283,35 @@
       eventClick: function(event){
         var id = event.id;
         console.log(id);
-        $('#bookingModal').modal('toggle');
+        $.ajax({
+          url:"{{ url('dashboard'), '' }}" +'/edit/'+ id,
+          method:"GET",
+          success:function(response)
+          {
+            console.log(response);
+            var start = response.start_date.split(" ");
+            var end = response.end_date.split(" ");
+            $('#bookingModal').modal('show');
+            $('#saveBtn').html('Update');
+            $('#booking_number').val(response.booking_number); //.prop('disabled', true)
+            $('#username').val(response.username);
+            $('#title').val(response.title);
+            $('#start_date').val(start[0]);
+            $('#end_date').val(end[0]);
+            $('#start_time').val(start[1]);
+            $('#end_time').val(end[1]);
+            $('#detail').val(response.detail);
+            $('#vehicle').val(response.vehicle).change();
+            $('#travelers').val(response.travelers);
+            $('#place').val(response.place).change();
+            $('#location').val(response.location);
+            $('#phone').val(response.phone);
+          },
+          error:function(error)
+          {
+            console.log(error);
+          },
+        });
       }
     });
     $("#bookingModal").on("hidden.bs.modal", function () {
