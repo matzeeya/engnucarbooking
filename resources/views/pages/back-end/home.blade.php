@@ -43,8 +43,10 @@
         <form>
           <div class="mb-3">
             <div class="row">
+              <div class="col" id="divUsername" hidden>
+                <input type="text" class="form-control" id="username" value="{{\Auth::user()->username}}">
+              </div>
               <div class="col">
-                <input type="hidden" class="form-control" id="username" value="{{\Auth::user()->username}}">
                 <label for="booking_number" class="col-form-label">Booking Number:</label>
                 <input type="text" class="form-control" id="booking_number" required>
                 <span id="bookingNumberError" class="text-danger"></span>
@@ -294,14 +296,14 @@
             $('#bookingModal').modal('show');
             $('#saveBtn').html('Update');
             $('#booking_number').val(response.booking_number); //.prop('disabled', true)
-            $('#username').val(response.username);
+            $('#username').val(response.user);//.prop("type", "text")
             $('#title').val(response.title);
             $('#start_date').val(start[0]);
             $('#end_date').val(end[0]);
             $('#start_time').val(start[1]);
             $('#end_time').val(end[1]);
             $('#detail').val(response.detail);
-            $('#vehicle').val(response.vehicle).change();
+            $('#vehicle').val(response.vehicle).change();//.hide() /.show()
             $('#travelers').val(response.travelers);
             $('#place').val(response.place).change();
             $('#location').val(response.location);
