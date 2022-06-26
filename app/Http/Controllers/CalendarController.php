@@ -71,7 +71,7 @@ class CalendarController extends Controller
       ]);
     }
     
-    public function edit($id)
+    public function view($id)
     {
       $booking = Booking::find($id);
       if(! $booking) {
@@ -80,5 +80,24 @@ class CalendarController extends Controller
         ], 404);
       }
       return $booking;
+    }
+
+    public function edit(Request $request ,$id)
+    {
+        $booking = Booking::find($id);
+        if(! $booking) {
+            return response()->json([
+                'error' => 'Unable to locate the event'
+            ], 404);
+        }
+        $booking->update([
+          'chauffeur' => $request->chauffeur,
+          'vehicle_id' => $request->vehicle_id,
+          'status' => $request->status,
+          'reason' => $request->reason,
+          'approver' => $request->approver,
+          'approver_date' => $request->approver_date,
+        ]);
+        return response()->json($booking);
     }
 }

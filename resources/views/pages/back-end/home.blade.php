@@ -42,13 +42,14 @@
         <!-- form control -->
         <form>
           <div class="mb-3">
+            <label for="username" class="col-form-label">ผู้จอง:</label>
+            <input type="text" class="form-control" id="username" value="{{\Auth::user()->username}}" disabled>
+          </div>
+          <div class="mb-3">
             <div class="row">
-              <div class="col" id="divUsername" hidden>
-                <input type="text" class="form-control" id="username" value="{{\Auth::user()->username}}">
-              </div>
               <div class="col">
                 <label for="booking_number" class="col-form-label">Booking Number:</label>
-                <input type="text" class="form-control" id="booking_number" required>
+                <input type="text" class="form-control" id="booking_number">
                 <span id="bookingNumberError" class="text-danger"></span>
               </div>
               <div class="col">
@@ -153,7 +154,7 @@
               </div>
               <div class="col">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="useto1">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="useto1">
                   <label class="form-check-label" for="useto1">
                     จองให้ผู้อื่น
                   </label>
@@ -161,7 +162,7 @@
               </div>
               <div class="col">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="useto2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="useto2" checked>
                   <label class="form-check-label" for="useto2">
                     จองใช้งานเอง
                   </label>
@@ -169,12 +170,57 @@
               </div>
             </div>
           </div>
+          <!-- admin -->
+          @if(Auth::user()->usr_lvl=="admin")
+          <div class="mb-3" id="divAdmin">
+            <div class="row">
+              <div class="col">
+                <label for="vehicle_id" class="col-form-label">ระบุรถ:</label>
+                <select class="form-select" id="vehicle_id" aria-label="Default select example">
+                  <option selected>กรุณาเลือกรถที่ใช้งาน</option>
+                  <option value="1">กน 9914</option>
+                  <option value="2">ขก 4926</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="chauffeur" class="col-form-label">ระบุคนขับ:</label>
+                <select class="form-select" id="chauffeur" aria-label="Default select example">
+                  <option selected>กรุณาเลือกเลือกคนขับ</option>
+                  <option value="3">นาย ก.</option>
+                  <option value="4">นาย ข.</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="status" class="col-form-label">สถานะการจอง:</label>
+                <select class="form-select" id="status" aria-label="Default select example">
+                  <option selected>กรุณาเลือกสถานะการจอง</option>
+                  <option value="0">รอตรวจสอบ</option>
+                  <option value="1">อนุมัติ</option>
+                  <option value="2">ไม่อนุมัติ</option>
+                  <option value="3">ยกเลิกโดยผู้จอง</option>
+                  <option value="4">ยกเลิกโดยผู้ดูแลระบบ</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="reason" class="col-form-label">ระบุเหตุผล:</label>
+                <input type="text" class="form-control" id="reason" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="approver" value="{{\Auth::user()->username}}" disabled>
+            <input type="text" class="form-control" id="datenow" disabled>
+          </div>
+          @endif
         </form>
         <!-- End form control -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="saveBtn" class="btn btn-primary">Save</button>
+          <button type="button" id="approveBtn" class="btn btn-primary">Update</button>
+          <button type="button" id="saveBtn" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
@@ -223,6 +269,8 @@
       selectHelper: true,
       select: function(start, end, allDays) {
         $('#bookingModal').modal('toggle');
+        $('#approveBtn').hide();
+        $('#saveBtn').show();
         $('#start_date').val(moment(start).format('YYYY-MM-DD'));
         $('#end_date').val(moment(end).subtract(1, 'days').format('YYYY-MM-DD'));
         /*$('#start_time').val(moment().format('h:mm:ss a'));
@@ -286,15 +334,17 @@
         var id = event.id;
         console.log(id);
         $.ajax({
-          url:"{{ url('dashboard'), '' }}" +'/edit/'+ id,
+          url:"{{ url('dashboard'), '' }}" +'/view/'+ id,
           method:"GET",
           success:function(response)
           {
             console.log(response);
+            var approved_date = moment().format('YYYY-MM-DD');
             var start = response.start_date.split(" ");
             var end = response.end_date.split(" ");
             $('#bookingModal').modal('show');
-            $('#saveBtn').html('Update');
+            $('#saveBtn').hide();
+            $('#approveBtn').show();
             $('#booking_number').val(response.booking_number); //.prop('disabled', true)
             $('#username').val(response.user);//.prop("type", "text")
             $('#title').val(response.title);
@@ -308,6 +358,42 @@
             $('#place').val(response.place).change();
             $('#location').val(response.location);
             $('#phone').val(response.phone);
+            $('#datenow').val(approved_date);
+
+            $('#approveBtn').click(function() {
+              var chauffeur = $('#chauffeur').val();
+              var vehicle_id = $('#vehicle_id').val();
+              var status = $('#status').val();
+              var reason = $('#reason').val();
+              var approver = $('#approver').val();
+
+              $.ajax({
+                url:"{{ route('dashboard.edit', '') }}" +'/'+ id,
+                type:"PATCH",
+                dataType:'json',
+                data:{ 
+                  chauffeur,
+                  vehicle_id,
+                  status,
+                  reason,
+                  approver,
+                  approved_date
+                },
+                success:function(response)
+                {
+                  console.log("edit: "+response);
+                  $('#bookingModal').modal('hide')
+                  swal("Good job!", "Event Updated!", "success");
+                },
+                error:function(error)
+                {
+                  console.log(error);
+                  /*if(error.responseJSON.errors) {
+                    $('#titleError').html(error.responseJSON.errors.title);
+                  }*/
+                },
+              });
+            })
           },
           error:function(error)
           {
