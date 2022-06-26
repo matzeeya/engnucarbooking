@@ -19,6 +19,12 @@ class Booking extends Model
         'travelers',
         'place',
         'location',
-        'phone'
+        'phone',
+        'chauffeur',
+        'vehicle_id',
+        'status',
+        'reason',
+        'approver',
+        'approved_date'
     ];
 }

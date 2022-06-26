@@ -30,5 +30,5 @@ Route::get('/home',function(){
 Route::get('/dashboard', [CalendarController::class, 'index'])->name('dashboard');
 Route::post('/dashboard/store', [CalendarController::class, 'store'])->name('dashboard.store');
 Route::get('/dashboard/view/{id}', [CalendarController::class, 'view'])->name('dashboard.view');
-Route::patch('dashboard/edit/{id}', [CalendarController::class, 'edit'])->name('dashboard.edit');
+Route::post('dashboard/edit/{id}', [CalendarController::class, 'edit'])->name('dashboard.edit');
 //Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');

@@ -96,8 +96,9 @@ class CalendarController extends Controller
           'status' => $request->status,
           'reason' => $request->reason,
           'approver' => $request->approver,
-          'approver_date' => $request->approver_date,
+          'approved_date' => $request->approved_date,
         ]);
+
         return response()->json($booking);
     }
 }

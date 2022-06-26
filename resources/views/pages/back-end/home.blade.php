@@ -309,12 +309,7 @@
             {
               console.log(response);
               $('#bookingModal').modal('hide')
-              $('#calendar').fullCalendar('renderEvent', {
-                'title': response.title,
-                'start' : response.start,
-                'end'  : response.end,
-                'color' : response.color
-              });
+              $('#calendar').fullCalendar('renderEvent', response);
               $('#booking_number').val('');
               $('#title').val('');
               $('#detail').val('');
@@ -369,7 +364,7 @@
 
               $.ajax({
                 url:"{{ route('dashboard.edit', '') }}" +'/'+ id,
-                type:"PATCH",
+                type:"POST",
                 dataType:'json',
                 data:{ 
                   chauffeur,
@@ -384,13 +379,11 @@
                   console.log("edit: "+response);
                   $('#bookingModal').modal('hide')
                   swal("Good job!", "Event Updated!", "success");
+                  $('#calendar').fullCalendar( 'refetchEvents');
                 },
                 error:function(error)
                 {
                   console.log(error);
-                  /*if(error.responseJSON.errors) {
-                    $('#titleError').html(error.responseJSON.errors.title);
-                  }*/
                 },
               });
             })
