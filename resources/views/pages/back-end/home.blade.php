@@ -256,7 +256,7 @@
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    
+
     var booking = @json($events);
     $('#calendar').fullCalendar({
       header: {
@@ -292,18 +292,18 @@
             url:"{{ route('dashboard.store') }}",
             type:"POST",
             dataType:'json',
-            data:{ 
-              booking_number, 
-              username, 
-              title, 
-              start_date, 
-              end_date, 
-              detail, 
-              vehicle, 
-              travelers, 
-              place, 
+            data:{
+              booking_number,
+              username,
+              title,
+              start_date,
+              end_date,
+              detail,
+              vehicle,
+              travelers,
+              place,
               location,
-              phone 
+              phone
             },
             success:function(response)
             {
@@ -366,7 +366,7 @@
                 url:"{{ route('dashboard.edit', '') }}" +'/'+ id,
                 type:"POST",
                 dataType:'json',
-                data:{ 
+                data:{
                   chauffeur,
                   vehicle_id,
                   status,
@@ -380,6 +380,7 @@
                   $('#bookingModal').modal('hide')
                   swal("Good job!", "Event Updated!", "success");
                   $('#calendar').fullCalendar( 'refetchEvents');
+                  $('#calendar').fullCalendar( 'renderEvent', response);
                 },
                 error:function(error)
                 {

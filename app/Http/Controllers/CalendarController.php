@@ -10,7 +10,7 @@ class CalendarController extends Controller
   public function index() //แสดงผลการจอง
   {
     $events = array();
-    $bookings = Booking::all(); 
+    $bookings = Booking::all();
     foreach($bookings as $booking) {
       $color = null;
       if($booking->status == 0) {
@@ -39,7 +39,7 @@ class CalendarController extends Controller
       $request->validate([
         'title' => 'required|string'
       ]);
-      
+
       $booking = Booking::create([
         'booking_number' => $request->booking_number,
         'user' => $request->username,
@@ -70,7 +70,7 @@ class CalendarController extends Controller
         'color' => $color ? $color: '',
       ]);
     }
-    
+
     public function view($id)
     {
       $booking = Booking::find($id);
@@ -99,6 +99,21 @@ class CalendarController extends Controller
           'approved_date' => $request->approved_date,
         ]);
 
-        return response()->json($booking);
-    }
+        //return response()->json($booking);
+        $color = null;
+          if($booking->status == 0) {
+            $color = '#F88133';
+          }else if($booking->status == 1){
+            $color = '#12B604';
+          }else{
+            $color = '#D80038';
+          }
+          return response()->json([
+            'id' => $booking->id,
+            'start' => $booking->start_date,
+            'end' => $booking->end_date,
+            'title' => $booking->title,
+            'color' => $color ? $color: '',
+          ]);
+        }
 }
