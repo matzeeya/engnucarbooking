@@ -30,9 +30,11 @@
   <section class="container-fluid">
     <div class="row">
       <div class="col-sm-2">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
         @if(Auth::user()!=null)
           @include('includes.front-end.sidebar')
         @endif
+      </nav>
       </div>
       <div class="col-sm-7">
           @yield('content')
