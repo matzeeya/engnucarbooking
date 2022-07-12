@@ -32,3 +32,19 @@
     </a>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $.ajax({
+      url:"{{ url('booking'), '' }}" +'/view/',
+      method:"GET",
+      success:function(response)
+      {
+        console.log(response);
+      },
+      error:function(error)
+      {
+        console.log(error);
+      },
+    });
+  });
+</script>

@@ -257,6 +257,21 @@
         }
     });
 
+    function clearData(){
+        $('#booking_number').val('');
+        $('#phone').val('');
+        $('#title').val('');
+        $('#detail').val('');
+        $('#travelers').val('');
+        $('#location').val('');
+        $('#start_time').val('');
+        $('#end_time').val('');
+        $('#vehicle').prop('selectedIndex', 0);
+        $('#place').prop('selectedIndex', 0);
+        $('#chauffeur').prop('selectedIndex', 0);
+        $('#vehicle_id').prop('selectedIndex', 0);
+        $('#status').prop('selectedIndex', 0);
+    }
     var booking = @json($events);
     $('#calendar').fullCalendar({
       header: {
@@ -310,11 +325,7 @@
               console.log(response);
               $('#bookingModal').modal('hide')
               $('#calendar').fullCalendar('renderEvent', response);
-              $('#booking_number').val('');
-              $('#title').val('');
-              $('#detail').val('');
-              $('#travelers').val('');
-              $('#location').val('');
+              clearData();
             },
             error:function(error)
             {
@@ -381,6 +392,7 @@
                   swal("Good job!", "Event Updated!", "success");
                   $('#calendar').fullCalendar( 'refetchEvents');
                   $('#calendar').fullCalendar( 'renderEvent', response);
+                  clearData();
                 },
                 error:function(error)
                 {
