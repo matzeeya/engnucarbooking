@@ -30,7 +30,7 @@ class CalendarController extends Controller
     }
     //return $events;
     //return view('calendar.index', ['events' => $events]);
-    return view('pages.back-end.home', ['events' => $events]);
+    return view('components.calendar', ['events' => $events]);
   }
 
   public function store(Request $request) //เพิ่มรายการจอง
