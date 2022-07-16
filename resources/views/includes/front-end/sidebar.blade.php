@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-start flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;height:100%;">
+<div class="d-flex justify-content-start flex-column flex-shrink-0 p-3 bg-light" style="width: 300px;height:100%;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <i class="fa-brands fa-elementor fa-2xl"></i>
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -7,10 +7,17 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark" aria-current="page">
+        <a href="{{URL::asset('dashboard/')}}" class="nav-link link-dark" aria-current="page">
           <i class="fa-solid fa-calendar-days fa-lg"></i>
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           ปฏิทินการใช้รถ
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{URL::asset('dashboard/list')}}" class="nav-link link-dark" aria-current="page">
+          <i class="fa-solid fa-car-tunnel fa-lg"></i>
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+            รายการจองใช้รถประจำเดือน
         </a>
       </li>
       <li>
