@@ -11,7 +11,7 @@
       <div class="modal-body">
         <!-- form control -->
         <form>
-          <div class="mb-3">
+          <div class="mb-3" id="userRequest">
             <label for="username" class="col-form-label">ผู้จอง:</label>
             <input type="text" class="form-control" id="username" value="{{\Auth::user()->username}}" disabled>
           </div>
@@ -42,27 +42,23 @@
           <div class="mb-3">
             <div class="row">
               <div class="col">
-                <label for="start_date" class="col-form-label">start:</label>
-                <input type="text" class="form-control" id="start_date" disabled>
+                <label for="start_date" class="col-form-label">วันที่ใช้รถ:</label>
+                <input type="date" class="form-control" id="start_date">
                 <span id="startDateError" class="text-danger"></span>
               </div>
               <div class="col">
-                <label for="start_time" class="col-form-label">time:</label>
-                <input type="text" class="form-control" id="start_time">
+                <label for="start_time" class="col-form-label">เวลา:</label>
+                <input type="time" class="form-control" id="start_time">
                 <span id="startTimeError" class="text-danger"></span>
               </div>
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="row">
               <div class="col">
-                <label for="end_date" class="col-form-label">end:</label>
-                <input type="text" class="form-control" id="end_date" disabled>
+                <label for="end_date" class="col-form-label">ถึงวันที่:</label>
+                <input type="date" class="form-control" id="end_date">
                 <span id="endDateError" class="text-danger"></span>
               </div>
               <div class="col">
-                <label for="end_time" class="col-form-label">time:</label>
-                <input type="text" class="form-control" id="end_time">
+                <label for="end_time" class="col-form-label">เวลา:</label>
+                <input type="time" class="form-control" id="end_time">
                 <span id="endTimeError" class="text-danger"></span>
               </div>
             </div>
@@ -180,17 +176,17 @@
             </div>
           </div>
           <div class="mb-3">
-            <input type="text" class="form-control" id="approver" value="{{\Auth::user()->username}}" disabled>
-            <input type="text" class="form-control" id="datenow" disabled>
+            <input type="hidden" class="form-control" id="approver" value="{{\Auth::user()->username}}" disabled>
+            <input type="hidden" class="form-control" id="datenow" disabled>
           </div>
           @endif
         </form>
         <!-- End form control -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" id="approveBtn" class="btn btn-primary">Update</button>
-          <button type="button" id="saveBtn" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+          <button type="button" id="approveBtn" class="btn btn-primary">ยืนยัน</button>
+          <button type="button" id="saveBtn" class="btn btn-primary">บันทึก</button>
       </div>
     </div>
   </div>
@@ -221,6 +217,7 @@
         }
     });
 
+    $('#userRequest').hide();
     function clearData(){
         $('#booking_number').val('');
         $('#phone').val('');
@@ -248,6 +245,8 @@
       selectHelper: true,
       select: function(start, end, allDays) {
         $('#bookingModal').modal('toggle');
+        clearData();
+        $('#divAdmin').hide();
         $('#approveBtn').hide();
         $('#saveBtn').show();
         $('#start_date').val(moment(start).format('YYYY-MM-DD'));
@@ -289,7 +288,7 @@
               console.log(response);
               $('#bookingModal').modal('hide')
               $('#calendar').fullCalendar('renderEvent', response);
-              clearData();
+              //clearData();
             },
             error:function(error)
             {
@@ -303,6 +302,7 @@
       eventClick: function(event){
         var id = event.id;
         console.log(id);
+        $('#divAdmin').show();
         $.ajax({
           url:"{{ url('dashboard'), '' }}" +'/view/'+ id,
           method:"GET",

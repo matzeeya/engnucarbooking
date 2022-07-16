@@ -10,9 +10,6 @@ class VehicleController extends Controller
 {
     public function index() //แสดงผลการจอง
   {
-    /*$vehicles = Vehicle::all();
-    return view('components.vehicle')
-          ->with('data',$vehicles);*/
     $datas = DB::table('vehicles')
     ->join('vehicle_type', 'vehicle_type.id', '=', 'vehicles.vehicle_type')
     ->join('brand', 'brand.id', '=', 'vehicles.brand_id')
