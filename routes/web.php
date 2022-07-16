@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ListBookingController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\MyBookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,10 @@ Route::get('/dashboard/view/{id}', [CalendarController::class, 'view'])->name('d
 Route::post('/dashboard/edit/{id}', [CalendarController::class, 'edit'])->name('dashboard.edit');
 
 //List booking data routes
-Route::get('/dashboard/list', [ListBookingController::class, 'index'])->name('dashboard.list');
+Route::get('/dashboard/bookings', [ListBookingController::class, 'index'])->name('dashboard.bookings');
 
 //List vehicle routes
 Route::get('/dashboard/vehicle', [VehicleController::class, 'index'])->name('dashboard.vehicle');
+
+//List mybooking data routes
+Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dashboard.mybooking');

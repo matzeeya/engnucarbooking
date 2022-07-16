@@ -14,14 +14,14 @@
         </a>
       </li>
       <li>
-        <a href="{{URL::asset('dashboard/list')}}" class="nav-link link-dark" aria-current="page">
+        <a href="{{URL::asset('dashboard/bookings')}}" class="nav-link link-dark" aria-current="page">
           <i class="fa-solid fa-car-tunnel fa-lg"></i>
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
             รายการจองใช้รถประจำเดือน
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="{{URL::asset('dashboard/')}}/{{Auth::user()->username}}" class="nav-link link-dark">
         <i class="fa-solid fa-address-card fa-lg"></i>
           <svg class="bi pe-none me-2" width="12" height="16"><use xlink:href="#speedometer2"/></svg>
           รายการจองของฉัน
