@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ListBookingController;
+use App\Http\Controllers\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,6 @@ Route::post('/dashboard/edit/{id}', [CalendarController::class, 'edit'])->name('
 
 //List booking data routes
 Route::get('/dashboard/list', [ListBookingController::class, 'index'])->name('dashboard.list');
+
+//List vehicle routes
+Route::get('/dashboard/vehicle', [VehicleController::class, 'index'])->name('dashboard.vehicle');

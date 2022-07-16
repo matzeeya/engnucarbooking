@@ -11,6 +11,6 @@ class ListBookingController extends Controller
   {
     $bookings = Booking::all();
     //return $bookings;
-    return view('components.booking')->with('bookings',$bookings);
+    return view('components.booking')->with('data',$bookings);
   }
 }

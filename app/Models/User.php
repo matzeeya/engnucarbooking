@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use LdapRecord\Laravel\Auth\LdapAuthenticatable;
 use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
+use App\Models\Vehicle;
 
 class User extends Authenticatable implements LdapAuthenticatable
 {
@@ -20,6 +21,7 @@ class User extends Authenticatable implements LdapAuthenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'username',
         'guid',
@@ -51,6 +53,4 @@ class User extends Authenticatable implements LdapAuthenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
 }

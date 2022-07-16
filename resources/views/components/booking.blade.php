@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-  @foreach($bookings as $list)
+  @foreach($data as $list)
     <tr>
       <td scope="row"><img src="https://www.engdict.com/data/vocab_img/0030/_img/637327205381203546_mini.png" width="100" height="100"></td>
       <td scope="row">
