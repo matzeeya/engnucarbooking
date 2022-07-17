@@ -109,11 +109,12 @@
               <div class="col">
                 <label for="fuel" class="col-form-label">เชื้อเพลิง:</label>
                 <select class="form-select" id="fuel">
-                  <option selected>กรุณาเลือกเชื้อเพลิงที่ใช้</option>
-                  <option value="1">เบนซิน</option>
-                  <option value="2">ดีเซล</option>
-                  <option value="3">แก๊ส NGV</option>
-                  <option value="4">แก๊ส LPG</option>
+                  <option selected>กรุณาเลือกน้ำมันที่ใช้</option>
+                  <option value="1">แก๊สโซฮอล์</option>
+                  <option value="2">เบนซิน</option>
+                  <option value="3">ดีเซล</option>
+                  <option value="4">แก๊ส NGV</option>
+                  <option value="5">แก๊ส LPG</option>
                 </select>
               </div>
             </div>
@@ -161,7 +162,7 @@
           <div class="mb-3">
             <div class="row">
               <div class="col">
-                <label for="responsible_man" class="col-form-label">ผููรับผิดชอบ:</label>
+                <label for="responsible_man" class="col-form-label">ผู้รับผิดชอบ:</label>
                 <select class="form-select" id="responsible_man">
                   <option selected>กรุณาเลือกผู้รับผิดชอบ</option>
                 </select>
