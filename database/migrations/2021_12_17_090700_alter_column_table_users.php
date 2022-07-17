@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class AlterColumnTableUsers extends Migration
 {
@@ -30,6 +31,18 @@ class AlterColumnTableUsers extends Migration
             $table->integer('usr_type')->default(4); //ประเภทผู้ใช้: 1:ผู้ดูแลระบบ / 2:เจ้าหน้าที่ / 3:คนขับรถ / 4:ผู้ใช้
             $table->integer('active')->default(1); //not login
         });
+
+        // Insert default user
+        DB::table('users')->insert(
+            array(
+                'name' => 'ไม่ระบุ',
+                'username' => 'none',
+                'password' => 'none',
+                'usr_lvl' => 'default',
+                'usr_type' => '4',
+                'active' => '0'
+            )
+        );
     }
 
     /**

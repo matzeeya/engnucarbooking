@@ -18,14 +18,16 @@ class CreateBookingsTable extends Migration
             $table->string('booking_number');
             $table->string('user'); //คนจอง: username คนจอง
             $table->string('title');
-            $table->integer('chauffeur')->default(0); //คนขับ: รหัสคนขับ 0:ไม่ระบุ
+            $table->integer('chauffeur')->default(1); //คนขับ: รหัสคนขับ 1:ไม่ระบุ
             $table->integer('vehicle'); //ยานพาหนะที่ต้องการจอง: รถตู้/รถกระบะ
             $table->integer('vehicle_id')->nullable(true); //ยานพาหนะที่ได้รับการอนุมัติ: รหัสรถที่ได้
             $table->string('detail')->nullable(true);
             $table->integer('travelers')->nullable(true); //จำนวนผู้โดยสาร
             $table->string('options')->nullable(true); //ออฟชั่นเสริม รหัส option
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->date('start_date');
+            $table->time('start_time');
+            $table->date('end_date');
+            $table->time('end_time');
             $table->integer('place')->default(1);  // 1:ในมหาลัย / 2:นอกมหาลัย / 3:ในจังหวัด / 4:นอกจังหวัด
             $table->string('location')->nullable(true); // สถานที่ไป
             $table->integer('useto')->default(1); //2: จองให้ผู้อื่น / 1:ใช้เอง
