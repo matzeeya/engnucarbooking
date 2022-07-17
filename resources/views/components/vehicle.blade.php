@@ -1,5 +1,18 @@
 @extends('pages.back-end.vehicle')
 @section('listVehicle')
+<div class="input-group mb-3">
+  <label class="input-group-text">ค้นหาข้อมูล</label>
+  <input type="text" class="form-control" placeholder="ค้นหาจากทะเบียนรถ">
+  <button class="btn btn-outline-secondary" type="button" id="btnSearch">ตกลง</button>
+</div>
+<div class="input-group mb-3">
+  <button class="btn btn-outline-secondary" 
+    type="button" 
+    id="btnAdd">
+    เพิ่ม
+  </button>
+  <label class="input-group-text">ข้อมูลรถ</label>
+</div>
 <table class="table table-hover">
 <thead>
     <tr>
@@ -32,7 +45,164 @@
   @endforeach
   </tbody>
 </table>
+
+<!-- Modal Add Data -->
+<div class="modal fade" id="modalAdd" data-bs-backdrop="static" 
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" 
+    aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลรถ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- form control -->
+        <form>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="vehicle_number" class="col-form-label">ทะเบียน:</label>
+                <input type="text" class="form-control" id="vehicle_number">
+              </div>
+              <div class="col">
+                <label for="province" class="col-form-label">จังหวัด:</label>
+                <input type="text" class="form-control" id="province">
+              </div>
+              <div class="col">
+                <label for="status" class="col-form-label">สถานะ:</label>
+                <select class="form-select" id="status">
+                  <option>กรุณาเลือกสถานะการใช้งาน</option>
+                  <option value="1" selected>ปกติ</option>
+                  <option value="2">แจ้งซ่อม</option>
+                  <option value="2">จำหน่าย</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="vehicle_type" class="col-form-label">ประเภทของรถ:</label>
+                <select class="form-select" id="vehicle_type">
+                  <option selected>กรุณาเลือกประเภทรถ</option>
+                  <option value="1">รถตู้</option>
+                  <option value="2">รถกระบะ</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="brand" class="col-form-label">ยี่ห้อ:</label>
+                <select class="form-select" id="brand">
+                  <option selected>กรุณาเลือกยี่ห้อรถ</option>
+                  <option value="1">Toyota</option>
+                  <option value="2">Honda</option>
+                  <option value="3">Nissan</option>
+                  <option value="4">Suzuki</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="model" class="col-form-label">โมเดล/รุ่น:</label>
+                <input type="text" class="form-control" id="model">
+              </div>
+              <div class="col">
+                <label for="color" class="col-form-label">สี:</label>
+                <input type="text" class="form-control" id="color">
+              </div>
+              <div class="col">
+                <label for="fuel" class="col-form-label">เชื้อเพลิง:</label>
+                <select class="form-select" id="fuel">
+                  <option selected>กรุณาเลือกเชื้อเพลิงที่ใช้</option>
+                  <option value="1">เบนซิน</option>
+                  <option value="2">ดีเซล</option>
+                  <option value="3">แก๊ส NGV</option>
+                  <option value="4">แก๊ส LPG</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="serial_number" class="col-form-label">หมายเลขเครื่อง:</label>
+                <input type="text" class="form-control" id="serial_number">
+              </div>
+              <div class="col">
+                <label for="serial_body" class="col-form-label">หมายเลขตัวถัง:</label>
+                <input type="text" class="form-control" id="serial_body">
+              </div>
+              <div class="col">
+                <label for="price" class="col-form-label">ราคา:</label>
+                <input type="text" class="form-control" id="price">
+              </div>
+              <div class="col">
+                <label for="seat" class="col-form-label">จำนวนที่นั่ง:</label>
+                <input type="text" class="form-control" id="seat">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="date_buy" class="col-form-label">วันที่ซื้อ:</label>
+                <input type="date" class="form-control" id="date_buy">
+              </div>
+              <div class="col">
+                <label for="date_input" class="col-form-label">วันที่รับเข้า:</label>
+                <input type="date" class="form-control" id="date_input">
+              </div>
+              <div class="col">
+                <label for="date_register" class="col-form-label">วันที่จดทะเบียน:</label>
+                <input type="date" class="form-control" id="date_register">
+              </div>
+              <div class="col">
+                <label for="expire_register" class="col-form-label">ทะเบียนหมดอายุ:</label>
+                <input type="date" class="form-control" id="expire_register">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <label for="responsible_man" class="col-form-label">ผููรับผิดชอบ:</label>
+                <select class="form-select" id="responsible_man">
+                  <option selected>กรุณาเลือกผู้รับผิดชอบ</option>
+                  <option value="1">นาย ก</option>
+                  <option value="2">นาย ข</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col">
+                <div class="input-group">
+                  <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                  <!--<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- End form control -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">เพิ่มข้อมูล</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
+
+<script>
+  $(document).ready(function() {
+    $('#btnAdd').click(function(){
+      $('#modalAdd').modal('toggle');
+    })
+  });
+</script>
 @endsection
-
-
-

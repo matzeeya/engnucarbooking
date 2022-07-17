@@ -16,10 +16,10 @@ class CreateVehiclesActTable extends Migration
         Schema::create('vehicle_act', function (Blueprint $table) {
             $table->id();
             $table->integer('vehicle_id'); //รหัสยานพาหนะ
-            $table->dateTime('date_act')->nullable(true); //วันที่ทำ พรบ.
-            $table->dateTime('expire_act')->nullable(true); //พรบ. หมดอายุ
-            $table->dateTime('date_insurance')->nullable(true); //วันที่ทำประกัน
-            $table->dateTime('expire_insurance')->nullable(true); //วันหมดประกัน
+            $table->date('date_act')->nullable(true); //วันที่ทำ พรบ.
+            $table->date('expire_act')->nullable(true); //พรบ. หมดอายุ
+            $table->date('date_insurance')->nullable(true); //วันที่ทำประกัน
+            $table->date('expire_insurance')->nullable(true); //วันหมดประกัน
             $table->string('insurance_company')->nullable(true); //บริษัทประกัน
             $table->timestamps();
         });

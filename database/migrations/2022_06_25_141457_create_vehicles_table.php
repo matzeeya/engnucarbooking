@@ -27,10 +27,10 @@ class CreateVehiclesTable extends Migration
             $table->string('serial_body')->nullable(true); //หมายเลขตัวถัง
             $table->float('price', 9, 2)->nullable(true); //ราคา
             $table->integer('seat')->nullable(true); //จำนวนที่นั่ง
-            $table->dateTime('date_buy')->nullable(true); //วันที่ซื้อ
-            $table->dateTime('date_input')->nullable(true); //วันที่รับเข้า
-            $table->dateTime('date_register')->nullable(true); //วันที่จดทะเบียน
-            $table->dateTime('expire_register')->nullable(true); //ทะเบียนหมดอายุ
+            $table->date('date_buy')->nullable(true); //วันที่ซื้อ
+            $table->date('date_input')->nullable(true); //วันที่รับเข้า
+            $table->date('date_register')->nullable(true); //วันที่จดทะเบียน
+            $table->date('expire_register')->nullable(true); //ทะเบียนหมดอายุ
             $table->integer('responsible_man')->default(0); //ผู้รับผิดชอบ 0:ยังไม่ระบุ etc. ตามรหัสสมาชิก
             $table->string('photo')->nullable(true);
             $table->timestamps();
