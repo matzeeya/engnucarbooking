@@ -258,7 +258,9 @@
           var username = $('#username').val();
           var title = $('#title').val();
           var start_date = $('#start_date').val();
+          var start_time = $('#start_time').val();
           var end_date = moment(end).format('YYYY-MM-DD');
+          var end_time = $('#end_time').val();
           var detail = $('#detail').val();
           var vehicle = $('#vehicle').val();
           var travelers = $('#travelers').val();
@@ -275,7 +277,9 @@
               username,
               title,
               start_date,
+              start_time,
               end_date,
+              end_time,
               detail,
               vehicle,
               travelers,
