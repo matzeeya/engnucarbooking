@@ -43,6 +43,8 @@ Route::get('/dashboard/vehicle', [VehicleController::class, 'index'])->name('das
 Route::get('/dashboard/type', [VehicleController::class, 'getType'])->name('dashboard.type');
 Route::get('/dashboard/brand', [VehicleController::class, 'getBrand'])->name('dashboard.brand');
 Route::get('/dashboard/driver', [VehicleController::class, 'getDriver'])->name('dashboard.driver');
+Route::get('/dashboard/province', [VehicleController::class, 'getProvince'])->name('dashboard.province');
+Route::post('/dashboard/addCar', [VehicleController::class, 'store'])->name('dashboard.addCar');
 
 //List mybooking data routes
 Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dashboard.mybooking');

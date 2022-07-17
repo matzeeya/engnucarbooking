@@ -67,7 +67,9 @@
               </div>
               <div class="col">
                 <label for="province" class="col-form-label">จังหวัด:</label>
-                <input type="text" class="form-control" id="province">
+                <select class="form-select" id="province">
+                  <option selected>กรุณาเลือกจังหวัด</option>
+                </select>
               </div>
               <div class="col">
                 <label for="status" class="col-form-label">สถานะ:</label>
@@ -173,7 +175,7 @@
             <div class="row">
               <div class="col">
                 <div class="input-group">
-                  <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                  <input type="file" accept="image/*" class="form-control" id="uploadfile" aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
                   <!--<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>-->
                 </div>
               </div>
@@ -184,7 +186,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">เพิ่มข้อมูล</button>
+        <button type="button" class="btn btn-primary" id="saveBtn">เพิ่มข้อมูล</button>
       </div>
     </div>
   </div>
@@ -193,7 +195,15 @@
 
 <script>
   $(document).ready(function() {
-    
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#btnAdd').click(function(){
+      $('#modalAdd').modal('toggle');
+    });
     //get vehicle type
     $.ajax({
       url:"{{ url('dashboard'), '' }}" +'/type/',
@@ -242,10 +252,78 @@
         console.log(err);
       }
     });
-
-    $('#btnAdd').click(function(){
-      $('#modalAdd').modal('toggle');
+    //get province
+    $.ajax({
+      url:"{{ url('dashboard'), '' }}" +'/province/',
+      method:"GET",
+      success:function(res)
+      {
+        res.forEach(doc=>{
+          $('#province').append('<option value="'+doc.id+'">'+doc.name+'</option>');
+          //console.log(doc.name);
+        })
+      },
+      error:function(err)
+      {
+        console.log(err);
+      }
     });
+
+    $('#saveBtn').click(function() {
+        var vehicle_number = $('#vehicle_number').val();
+        var vehicle_province = $('#province').val();
+        var status = $('#status').val();
+        var vehicle_type = $('#vehicle_type').val();
+        var brand_id = $('#brand').val();
+        var model = $('#model').val();
+        var color = $('#color').val();
+        var fuel = $('#fuel').val();
+        var serial_number = $('#serial_number').val();
+        var serial_body = $('#serial_body').val();
+        var price = $('#price').val();
+        var seat = $('#seat').val();
+        var date_buy = $('#date_buy').val();
+        var date_input = $('#date_input').val();
+        var date_register = $('#date_register').val();
+        var expire_register = $('#expire_register').val();
+        var responsible_man = $('#responsible_man').val();
+        var photo = $('#uploadfile').val();
+
+          $.ajax({
+            url:"{{ route('dashboard.addCar') }}",
+            type:"POST",
+            dataType:'json',
+            data:{
+              vehicle_number,
+              vehicle_province,
+              status,
+              vehicle_type,
+              brand_id ,
+              model,
+              color,
+              fuel,
+              serial_number,
+              serial_body,
+              price,
+              seat,
+              date_buy,
+              date_input,
+              date_register,
+              expire_register,
+              responsible_man,
+              photo
+            },
+            success:function(res)
+            {
+              console.log(res);
+              $('#modalAdd').modal('hide')
+            },
+            error:function(err)
+            {
+              console.log(err);
+            },
+          });
+        })
   });
 </script>
 @endsection
