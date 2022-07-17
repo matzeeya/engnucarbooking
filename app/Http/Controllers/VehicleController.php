@@ -19,4 +19,26 @@ class VehicleController extends Controller
 
     return view('components.vehicle')->with('data',$datas);
   }
+
+  public function getType()
+  {
+    return $vTypes = DB::table('vehicle_type')
+    ->select('id','name')
+    ->get();
+  }
+
+  public function getBrand()
+  {
+    return $brands = DB::table('brand')
+    ->select('id','name')
+    ->get();
+  }
+
+  public function getDriver()
+  {
+    return $driver = DB::table('users')
+    ->where('usr_type', '=', '3')
+    ->select('id','name')
+    ->get();
+  }
 }

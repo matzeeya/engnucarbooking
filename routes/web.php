@@ -40,6 +40,9 @@ Route::get('/dashboard/bookings', [ListBookingController::class, 'index'])->name
 
 //List vehicle routes
 Route::get('/dashboard/vehicle', [VehicleController::class, 'index'])->name('dashboard.vehicle');
+Route::get('/dashboard/type', [VehicleController::class, 'getType'])->name('dashboard.type');
+Route::get('/dashboard/brand', [VehicleController::class, 'getBrand'])->name('dashboard.brand');
+Route::get('/dashboard/driver', [VehicleController::class, 'getDriver'])->name('dashboard.driver');
 
 //List mybooking data routes
 Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dashboard.mybooking');

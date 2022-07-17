@@ -86,18 +86,12 @@
                 <label for="vehicle_type" class="col-form-label">ประเภทของรถ:</label>
                 <select class="form-select" id="vehicle_type">
                   <option selected>กรุณาเลือกประเภทรถ</option>
-                  <option value="1">รถตู้</option>
-                  <option value="2">รถกระบะ</option>
                 </select>
               </div>
               <div class="col">
                 <label for="brand" class="col-form-label">ยี่ห้อ:</label>
                 <select class="form-select" id="brand">
                   <option selected>กรุณาเลือกยี่ห้อรถ</option>
-                  <option value="1">Toyota</option>
-                  <option value="2">Honda</option>
-                  <option value="3">Nissan</option>
-                  <option value="4">Suzuki</option>
                 </select>
               </div>
             </div>
@@ -170,8 +164,6 @@
                 <label for="responsible_man" class="col-form-label">ผููรับผิดชอบ:</label>
                 <select class="form-select" id="responsible_man">
                   <option selected>กรุณาเลือกผู้รับผิดชอบ</option>
-                  <option value="1">นาย ก</option>
-                  <option value="2">นาย ข</option>
                 </select>
               </div>
             </div>
@@ -200,9 +192,59 @@
 
 <script>
   $(document).ready(function() {
+    
+    //get vehicle type
+    $.ajax({
+      url:"{{ url('dashboard'), '' }}" +'/type/',
+      method:"GET",
+      success:function(res)
+      {
+        res.forEach(doc=>{
+          $('#vehicle_type').append('<option value="'+doc.id+'">'+doc.name+'</option>');
+          //console.log(doc.name);
+        })
+      },
+      error:function(err)
+      {
+        console.log(err);
+      }
+    });
+    //get brand
+    $.ajax({
+      url:"{{ url('dashboard'), '' }}" +'/brand/',
+      method:"GET",
+      success:function(res)
+      {
+        res.forEach(doc=>{
+          $('#brand').append('<option value="'+doc.id+'">'+doc.name+'</option>');
+          //console.log(doc.name);
+        })
+      },
+      error:function(err)
+      {
+        console.log(err);
+      }
+    });
+      //get driver
+    $.ajax({
+      url:"{{ url('dashboard'), '' }}" +'/driver/',
+      method:"GET",
+      success:function(res)
+      {
+        res.forEach(doc=>{
+          $('#responsible_man').append('<option value="'+doc.id+'">'+doc.name+'</option>');
+          //console.log(doc.name);
+        })
+      },
+      error:function(err)
+      {
+        console.log(err);
+      }
+    });
+
     $('#btnAdd').click(function(){
       $('#modalAdd').modal('toggle');
-    })
+    });
   });
 </script>
 @endsection
