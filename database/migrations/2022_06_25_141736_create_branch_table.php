@@ -19,6 +19,20 @@ class CreateBranchTable extends Migration
             $table->integer('department');
             $table->timestamps();
         });
+
+        $data = [
+            ['name'=>'สาขาวิชาวิศวกรรมคอมพิวเตอร์','department'=>'1'],
+            ['name'=>'สาขาวิชาวิศวกรรมไฟฟ้า'],
+            ['name'=>'สาขาวิชาวิศวกรรมนวัตกรรมอัจฉริยะ'],
+            ['name'=>'สาขาวิชาวิศวกรรมอุตสาหการ'],
+            ['name'=>'สาขาวิชาวิศวกรรมวัสดุ'],
+            ['name'=>'สาขาวิชาวิศวกรรมเคมี'],
+            ['name'=>'สาขาวิชาวิศวกรรมเครื่องกล'],
+            ['name'=>'สาขาวิชาวิศวกรรมโยธา'],
+            ['name'=>'สาขาวิชาวิศวกรรมสิ่งแวดล้อม']
+        ];
+        // Insert provinces in thai
+        DB::table('branch')->insert($data);
     }
 
     /**
