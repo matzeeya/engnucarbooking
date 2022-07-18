@@ -51,17 +51,13 @@ class VehicleController extends Controller
 
   public function store(Request $request) //เพิ่มรายการจอง
     {
-      /*$req->validate([
-      'uploadfile' => 'required|image|mimes:png,jpg,jpge,gif|max:2048'
-      ]);
-
-      if($req->file()) {
-          $image = $request->file('uploadfile');
+      //if($request->photo) {
+          $image = $request->file('file');
           $fileName = rand().'_'.$image->getClientOriginalName();
           $image->move(public_path('images/cars'),$fileName);
-      }*/
+      //}
 
-      $vehicle = Vehicles::create([
+      /*$vehicle = Vehicle::create([
         'vehicle_number' => $request->vehicle_number,
         'vehicle_province' => $request->vehicle_province,
         'status' => $request->status,
@@ -79,8 +75,8 @@ class VehicleController extends Controller
         'expire_register' => $request->expire_register,
         'responsible_man' => $request->responsible_man,
         'photo' => $fileName,
-      ]);
+      ]);*/
 
-      return $vehicle;
+      return $fileName;
     }
 }

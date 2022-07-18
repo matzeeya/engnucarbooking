@@ -58,7 +58,7 @@
       </div>
       <div class="modal-body">
         <!-- form control -->
-        <form>
+        <form enctype=multipart/form-data>
           <div class="mb-3">
             <div class="row">
               <div class="col">
@@ -175,7 +175,7 @@
             <div class="row">
               <div class="col">
                 <div class="input-group">
-                  <input type="file" accept="image/*" class="form-control" id="uploadfile" aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
+                  <input type="file" accept="image/*" class="form-control" id="file" name="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" >
                   <!--<button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>-->
                 </div>
               </div>
@@ -287,12 +287,17 @@
         var date_register = $('#date_register').val();
         var expire_register = $('#expire_register').val();
         var responsible_man = $('#responsible_man').val();
-        var photo = $('#uploadfile').val();
+        var fd = new FormData();
+        var files = $('#file')[0].files;
+        fd.append('file',files[0]);
+        var photo = fd;
 
           $.ajax({
             url:"{{ route('dashboard.addCar') }}",
             type:"POST",
             dataType:'json',
+            processData: false,
+            contentType: false,
             data:{
               vehicle_number,
               vehicle_province,
