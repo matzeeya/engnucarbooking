@@ -10,12 +10,19 @@ class ListBookingController extends Controller
 {
     public function index() //แสดงผลการจอง
   {
-    $bookings = DB::table('bookings')
+    $approve = DB::table('bookings')
     ->join('vehicles','vehicles.id','=','bookings.vehicle_id')
     ->join('users','users.id','=','bookings.chauffeur')
     ->select('bookings.*','vehicles.photo','vehicles.vehicle_number','users.name')
     ->get();
 
-    return view('components.booking')->with('data',$bookings);
+    $bookings = DB::table('bookings')
+    ->join('vehicle_type','vehicle_type.id','=','bookings.vehicle')
+    ->select('bookings.*','vehicle_type.name')
+    ->get();
+
+    return view('components.booking')
+    ->with('data',$bookings)
+    ->with('approve',$approve);
   }
 }

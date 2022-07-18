@@ -33,7 +33,7 @@ class AlterColumnTableUsers extends Migration
         });
 
         // Insert default user
-        DB::table('users')->insert(
+        /*DB::table('users')->insert(
             array(
                 'name' => 'ไม่ระบุ',
                 'username' => 'none',
@@ -42,7 +42,7 @@ class AlterColumnTableUsers extends Migration
                 'usr_type' => '4',
                 'active' => '0'
             )
-        );
+        );*/
     }
 
     /**

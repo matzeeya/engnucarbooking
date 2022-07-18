@@ -9,24 +9,22 @@
   <tbody>
   @foreach($data as $list)
     <tr>
-      <td scope="row"><img src="{{URL::asset('/images/cars/')}}/{{$list->photo}}" width="100"></td>
+      <td scope="row"><img src="{{URL::asset('/images/cars/van_default.png')}}" width="100"></td>
       <td scope="row">
       <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
         <div class="d-flex gap-2 w-100 justify-content-between">
           <div>
-            <h6 class="mb-0">ทะเบียน: {{$list->vehicle_number}}</h6>
-            @if($list->chauffeur !='1')
-            <p class="mb-0 opacity-75">คนขับรถ: {{$list->name}}</p>
-            @endif
+            <h6 class="mb-0">ทะเบียน: </h6>
+            <p class="mb-0 opacity-75">ประเภทรถที่ต้องการ: {{$list->name}}</p>
             <p class="mb-0 opacity-75">
               วันที่ใช้รถ: {{$list->start_date}}
-              เวลา: {{$list->start_date}}
+              เวลา: {{$list->start_time}}
               ถึงวันที่: {{$list->end_date}}
-              เวลา: {{$list->end_date}}
+              เวลา: {{$list->end_time}}
             </p>
             <p class="mb-0 opacity-75">
               ผู้ขอใช้: {{$list->user}}
-              สำหรับแผนก: {{$list->vehicle_number}}
+              สำหรับแผนก: {{$list->faculty}}
             </p>
             <p class="mb-0 opacity-75">จองใช้รถเพื่อ: {{$list->title}}</p>
           </div>
