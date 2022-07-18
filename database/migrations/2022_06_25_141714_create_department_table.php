@@ -19,6 +19,15 @@ class CreateDepartmentTable extends Migration
             $table->integer('faculty');
             $table->timestamps();
         });
+
+        $data = [
+            ['name'=>'ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์','faculty'=>'1'],
+            ['name'=>'ภาควิชาวิศวกรรม','faculty'=>'1'],
+            ['name'=>'ภาควิชาวิศวกรรม','faculty'=>'1'],
+            ['name'=>'ภาควิชาวิศวกรรม','faculty'=>'1']
+        ];
+        // Insert department
+        DB::table('department')->insert($data);
     }
 
     /**

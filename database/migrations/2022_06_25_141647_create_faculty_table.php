@@ -18,6 +18,12 @@ class CreateFacultyTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        $data = [
+            ['name'=>'คณะวิศวกรรมศาสตร์']
+        ];
+        // Insert faculty
+        DB::table('faculty')->insert($data);
     }
 
     /**

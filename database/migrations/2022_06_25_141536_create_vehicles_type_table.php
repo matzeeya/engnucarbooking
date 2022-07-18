@@ -18,6 +18,12 @@ class CreateVehiclesTypeTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        $data = [
+            ['name'=>'รถตู้'],
+            ['name'=>'รถกระบะ']
+        ];
+        // Insert vehicle_type
+        DB::table('vehicle_type')->insert($data);
     }
 
     /**

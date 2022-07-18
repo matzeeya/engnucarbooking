@@ -18,6 +18,23 @@ class CreateBrandTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        $data = [
+            ['name'=>'Toyota'],
+            ['name'=>'Isuzu'],
+            ['name'=>'Honda'],
+            ['name'=>'Isuzu'],
+            ['name'=>'Mitsubishi'],
+            ['name'=>'Nissan'],
+            ['name'=>'Mazda'],
+            ['name'=>'Ford'],
+            ['name'=>'MG'],
+            ['name'=>'Kia'],
+            ['name'=>'Hyundai'],
+            ['name'=>'Volvo'],
+            ['name'=>'Subaru']
+        ];
+        // Insert brand
+        DB::table('brand')->insert($data);
     }
 
     /**
