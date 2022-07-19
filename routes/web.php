@@ -46,3 +46,6 @@ Route::post('/dashboard/addCar', [VehicleController::class, 'store'])->name('das
 
 //List mybooking data routes
 Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dashboard.mybooking');
+
+//List users routes
+//Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dashboard.mybooking');
