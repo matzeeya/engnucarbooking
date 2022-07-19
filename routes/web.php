@@ -5,6 +5,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ListBookingController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\MyBookingController;
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,6 @@ Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dash
 
 //List users routes
 //Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dashboard.mybooking');
+
+//generate pdf
+Route::get('/dashboard/pdf/{id}', [PdfController::class, 'index'])->name('pdf');

@@ -46,7 +46,10 @@
         </div>
       </a>
       </td>
-      <td>รายละเอียด</td>
+      <td>
+        <button type="button" id="view" class="btn btn-primary">ดูรายละเอียด</button>
+        <button type="button" id="exportPdf" class="btn btn-success" value="{{$list->id}}">PDF</button>
+      </td>
     </tr>
   @endforeach
   @foreach($data as $list)
@@ -92,7 +95,10 @@
         </div>
       </a>
       </td>
-      <td>รายละเอียด</td>
+      <td>
+        <button type="button" id="view2" class="btn btn-primary">ดูรายละเอียด</button>
+        <button type="button" id="exportPdf2" class="btn btn-success" value="{{$list->id}}">PDF</button>
+      </td>
     </tr>
     @endif
   @endforeach
@@ -104,3 +110,29 @@
   </tfoot>
 </table>
 @endsection
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#exportPdf').click(function(){
+      console.log($('#exportPdf').val());
+      var id = $('#exportPdf').val();
+      $.ajax({
+        url:"{{ url('dashboard'), '' }}" +'/pdf/'+ id,
+        method:"GET",
+        success:function(res)
+        {
+          console.log(res);
+        },
+        error:function(err)
+        {
+          console.log(err);
+        }
+      });
+    });
+  })
+</script>
