@@ -6,8 +6,8 @@
   <button class="btn btn-outline-secondary" type="button" id="btnSearch">ตกลง</button>
 </div>
 <div class="input-group mb-3">
-  <button class="btn btn-outline-secondary" 
-    type="button" 
+  <button class="btn btn-outline-secondary"
+    type="button"
     id="btnAdd">
     เพิ่ม
   </button>
@@ -47,8 +47,8 @@
 </table>
 
 <!-- Modal Add Data -->
-<div class="modal fade" id="modalAdd" data-bs-backdrop="static" 
-  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" 
+<div class="modal fade" id="modalAdd" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
     aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -287,17 +287,11 @@
         var date_register = $('#date_register').val();
         var expire_register = $('#expire_register').val();
         var responsible_man = $('#responsible_man').val();
-        var fd = new FormData();
-        var files = $('#file')[0].files;
-        fd.append('file',files[0]);
-        var photo = fd;
 
           $.ajax({
             url:"{{ route('dashboard.addCar') }}",
             type:"POST",
             dataType:'json',
-            processData: false,
-            contentType: false,
             data:{
               vehicle_number,
               vehicle_province,
@@ -315,8 +309,7 @@
               date_input,
               date_register,
               expire_register,
-              responsible_man,
-              photo
+              responsible_man
             },
             success:function(res)
             {

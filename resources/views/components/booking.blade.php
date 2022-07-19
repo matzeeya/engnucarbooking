@@ -9,7 +9,13 @@
   <tbody>
   @foreach($data as $list)
     <tr>
-      <td scope="row"><img src="{{URL::asset('/images/cars/van_default.png')}}" width="100"></td>
+      <td scope="row">
+        @if($list->vehicle == 1)
+        <img src="{{URL::asset('/images/cars/van_default.jpg')}}" width="100">
+        @else
+        <img src="{{URL::asset('/images/cars/car_default.jpg')}}" width="100">
+        @endif
+    </td>
       <td scope="row">
       <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
         <div class="d-flex gap-2 w-100 justify-content-between">
@@ -29,13 +35,13 @@
             <p class="mb-0 opacity-75">จองใช้รถเพื่อ: {{$list->title}}</p>
           </div>
           <small class="opacity-50 text-nowrap">
-            @if($list->status =='0')
+            @if($list->status == 0)
               รอตรวจสอบ
-            @elseif($list->status =='1')
+            @elseif($list->status == 1)
               อนุมัติ
-            @elseif($list->status =='2')
+            @elseif($list->status == 2)
               ไม่อนุมัติ
-            @elseif($list->status =='3')
+            @elseif($list->status == 3)
               ยกเลิกโดยผู้จอง
             @else
               ยกเลิกโดยผู้ดูแลระบบ

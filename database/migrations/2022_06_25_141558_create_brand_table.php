@@ -22,7 +22,7 @@ class CreateBrandTable extends Migration
             ['name'=>'Toyota'],
             ['name'=>'Isuzu'],
             ['name'=>'Honda'],
-            ['name'=>'Isuzu'],
+            ['name'=>'Suzuki'],
             ['name'=>'Mitsubishi'],
             ['name'=>'Nissan'],
             ['name'=>'Mazda'],

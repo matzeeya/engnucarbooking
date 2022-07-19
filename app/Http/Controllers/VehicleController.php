@@ -42,6 +42,14 @@ class VehicleController extends Controller
     ->get();
   }
 
+  public function getCar()
+  {
+    return $car = DB::table('vehicles')
+    //->where('vehicle_type', '=', $type)
+    ->select('id','vehicle_number')
+    ->get();
+  }
+
   public function getProvince()
   {
     return $provinces = DB::table('provinces')
@@ -51,13 +59,7 @@ class VehicleController extends Controller
 
   public function store(Request $request) //เพิ่มรายการจอง
     {
-      //if($request->photo) {
-          $image = $request->file('file');
-          $fileName = rand().'_'.$image->getClientOriginalName();
-          $image->move(public_path('images/cars'),$fileName);
-      //}
-
-      /*$vehicle = Vehicle::create([
+      $vehicle = Vehicle::create([
         'vehicle_number' => $request->vehicle_number,
         'vehicle_province' => $request->vehicle_province,
         'status' => $request->status,
@@ -74,9 +76,8 @@ class VehicleController extends Controller
         'date_register' => $request->date_register,
         'expire_register' => $request->expire_register,
         'responsible_man' => $request->responsible_man,
-        'photo' => $fileName,
-      ]);*/
+      ]);
 
-      return $fileName;
+      return $vehicle;
     }
 }

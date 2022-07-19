@@ -69,8 +69,6 @@
                 <label for="vehicle" class="col-form-label">ประเภทของรถ:</label>
                 <select class="form-select" id="vehicle" aria-label="Default select example">
                   <option selected>กรุณาเลือกประเภทรถที่ต้องการจอง</option>
-                  <option value="1">รถตู้</option>
-                  <option value="2">รถกระบะ</option>
                 </select>
               </div>
               <div class="col">
@@ -144,16 +142,12 @@
                 <label for="vehicle_id" class="col-form-label">ระบุรถ:</label>
                 <select class="form-select" id="vehicle_id" aria-label="Default select example">
                   <option selected>กรุณาเลือกรถที่ใช้งาน</option>
-                  <option value="1">กน 9914</option>
-                  <option value="2">ขก 4926</option>
                 </select>
               </div>
               <div class="col">
                 <label for="chauffeur" class="col-form-label">ระบุคนขับ:</label>
                 <select class="form-select" id="chauffeur" aria-label="Default select example">
                   <option selected>กรุณาเลือกเลือกคนขับ</option>
-                  <option value="3">นาย ก.</option>
-                  <option value="4">นาย ข.</option>
                 </select>
               </div>
             </div>
@@ -314,18 +308,18 @@
           {
             console.log(response);
             var approved_date = moment().format('YYYY-MM-DD');
-            var start = response.start_date.split(" ");
-            var end = response.end_date.split(" ");
+            //var start = response.start_date.split(" ");
+            //var end = response.end_date.split(" ");
             $('#bookingModal').modal('show');
             $('#saveBtn').hide();
             $('#approveBtn').show();
             $('#booking_number').val(response.booking_number); //.prop('disabled', true)
             $('#username').val(response.user);//.prop("type", "text")
             $('#title').val(response.title);
-            $('#start_date').val(start[0]);
-            $('#end_date').val(end[0]);
-            $('#start_time').val(start[1]);
-            $('#end_time').val(end[1]);
+            $('#start_date').val(response.start_date);
+            $('#end_date').val(response.end_date);
+            $('#start_time').val(response.start_time);
+            $('#end_time').val(response.end_time);
             $('#detail').val(response.detail);
             $('#vehicle').val(response.vehicle).change();//.hide() /.show()
             $('#travelers').val(response.travelers);
@@ -378,6 +372,53 @@
     });
     $("#bookingModal").on("hidden.bs.modal", function () {
       $('#saveBtn').unbind();
+    });
+    //get vehicle type
+    $.ajax({
+      url:"{{ url('dashboard'), '' }}" +'/type/',
+      method:"GET",
+      success:function(res)
+      {
+        res.forEach(doc=>{
+          $('#vehicle').append('<option value="'+doc.id+'">'+doc.name+'</option>');
+          //console.log(doc.name);
+        })
+      },
+      error:function(err)
+      {
+        console.log(err);
+      }
+    });
+    //get vehicle
+    $.ajax({
+      url:"{{ url('dashboard'), '' }}" +'/car/',
+      method:"GET",
+      success:function(res)
+      {
+        res.forEach(doc=>{
+          $('#vehicle_id').append('<option value="'+doc.id+'">'+doc.vehicle_number+'</option>');
+          //console.log(doc.name);
+        })
+      },
+      error:function(err)
+      {
+        console.log(err);
+      }
+    });
+    //get driver
+    $.ajax({
+      url:"{{ url('dashboard'), '' }}" +'/driver/',
+      method:"GET",
+      success:function(res)
+      {
+        res.forEach(doc=>{
+          $('#chauffeur').append('<option value="'+doc.id+'">'+doc.name+'</option>');
+        })
+      },
+      error:function(err)
+      {
+        console.log(err);
+      }
     });
   });
 </script>
