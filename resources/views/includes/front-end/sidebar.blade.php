@@ -29,7 +29,7 @@
       </li>
       @if(Auth::user()->usr_lvl=="admin")
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a href="{{URL::asset('dashboard/requests')}}" class="nav-link link-dark">
         <i class="fa-solid fa-car-side fa-lg"></i>
           <svg class="bi pe-none me-2" width="10" height="16"><use xlink:href="#table"/></svg>
           รายการคำขอใช้รถ

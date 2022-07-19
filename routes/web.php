@@ -23,11 +23,7 @@ Route::get('/', function () {
 
 Route::get('/home',function(){
     return view('pages.front-end.home');
-})->name('default-home');
-
-/*Route::get('/dashboard',function(){
-    return view('pages.back-end.home');
-})->name('dashboard');*/
+})->name('home');
 
 // Calendar routes
 Route::get('/dashboard', [CalendarController::class, 'index'])->name('dashboard');
@@ -37,6 +33,7 @@ Route::post('/dashboard/edit/{id}', [CalendarController::class, 'edit'])->name('
 
 //List booking data routes
 Route::get('/dashboard/bookings', [ListBookingController::class, 'index'])->name('dashboard.bookings');
+Route::get('/dashboard/requests', [ListBookingController::class, 'requests'])->name('dashboard.requests');
 
 //List vehicle routes
 Route::get('/dashboard/vehicle', [VehicleController::class, 'index'])->name('dashboard.vehicle');

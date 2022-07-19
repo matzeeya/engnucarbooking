@@ -32,12 +32,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-      <!-- fullcalendar -->
-        @yield('calendar')
-      <!-- End fullcalendar -->
-      <!-- table booking list -->
-        @yield('listBooking')
-      <!-- End table booking list -->
+        @yield('contents')
     </div>
 </div>
 @endsection

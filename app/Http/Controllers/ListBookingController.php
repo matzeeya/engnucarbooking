@@ -25,4 +25,17 @@ class ListBookingController extends Controller
     ->with('data',$bookings)
     ->with('approve',$approve);
   }
+
+  public function requests() //คำขอใช้รถ
+  {
+    $requests = DB::table('bookings')
+    ->join('vehicle_type','vehicle_type.id','=','bookings.vehicle')
+    ->where('bookings.status','=',0)
+    ->select('bookings.*','vehicle_type.name')
+    ->get();
+
+    return view('components.requests')
+    ->with('data',$requests);
+  }
+
 }

@@ -1,5 +1,5 @@
-@extends('pages.back-end.vehicle')
-@section('listVehicle')
+@extends('pages.back-end.home')
+@section('contents')
 <div class="input-group mb-3">
   <label class="input-group-text">ค้นหาข้อมูล</label>
   <input type="text" class="form-control" placeholder="ค้นหาจากทะเบียนรถ">

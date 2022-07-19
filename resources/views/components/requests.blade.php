@@ -3,52 +3,10 @@
 <table class="table table-hover">
 <thead>
     <tr>
-      <th scope="col" colspan="3">รายการจองใช้รถประจำเดือน</th>
+      <th scope="col" colspan="3">รายการจองของฉัน</th>
     </tr>
   </thead>
   <tbody>
-  @foreach($approve as $list)
-    <tr>
-      <td scope="row">
-        <img src="{{URL::asset('/images/cars/')}}/{{$list->photo}}" width="100">
-    </td>
-      <td scope="row">
-      <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-        <div class="d-flex gap-2 w-100 justify-content-between">
-          <div>
-            <h6 class="mb-0">ทะเบียน: {{$list->vehicle_number}}</h6>
-            <p class="mb-0 opacity-75">คนขับรถ: {{$list->name}}</p>
-            <p class="mb-0 opacity-75">
-              วันที่ใช้รถ: {{$list->start_date}}
-              เวลา: {{$list->start_time}}
-              ถึงวันที่: {{$list->end_date}}
-              เวลา: {{$list->end_time}}
-            </p>
-            <p class="mb-0 opacity-75">
-              ผู้ขอใช้: {{$list->user}}
-              สำหรับแผนก: {{$list->faculty}}
-            </p>
-            <p class="mb-0 opacity-75">จองใช้รถเพื่อ: {{$list->title}}</p>
-          </div>
-          <small class="opacity-50 text-nowrap">
-            @if($list->status == 0)
-              รอตรวจสอบ
-            @elseif($list->status == 1)
-              อนุมัติ
-            @elseif($list->status == 2)
-              ไม่อนุมัติ
-            @elseif($list->status == 3)
-              ยกเลิกโดยผู้จอง
-            @else
-              ยกเลิกโดยผู้ดูแลระบบ
-            @endif
-          </small>
-        </div>
-      </a>
-      </td>
-      <td>รายละเอียด</td>
-    </tr>
-  @endforeach
   @foreach($data as $list)
     @if($list->status != 1)
     <tr>
