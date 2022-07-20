@@ -42,6 +42,13 @@
           รายละเอียดรถ
         </a>
       </li>
+      <li>
+        <a href="{{URL::asset('dashboard/user')}}" class="nav-link link-dark">
+          <i class="fa-solid fa-car fa-lg"></i>
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          ข้อมูลผู้ใช้งาน
+        </a>
+      </li>
       @endif
     </ul>
 </div>

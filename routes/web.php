@@ -5,6 +5,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ListBookingController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\MyBookingController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PdfController;
 
 /*
@@ -45,11 +46,11 @@ Route::get('/dashboard/driver', [VehicleController::class, 'getDriver'])->name('
 Route::get('/dashboard/province', [VehicleController::class, 'getProvince'])->name('dashboard.province');
 Route::post('/dashboard/addCar', [VehicleController::class, 'store'])->name('dashboard.addCar');
 
+//List users routes
+Route::get('/dashboard/user', [UsersController::class, 'index'])->name('dashboard.user');
+
 //List mybooking data routes
 Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dashboard.mybooking');
-
-//List users routes
-//Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dashboard.mybooking');
 
 //generate pdf
 Route::get('/dashboard/pdf/{id}', [PdfController::class, 'index'])->name('pdf');

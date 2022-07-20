@@ -11,7 +11,7 @@
       <th scope="col">#</th>
       <th scope="col">ชื่อ-นามสกุล</th>
       <th scope="col">อีเมล</th>
-      <th scope="col">เบอร์โทร</th>
+      <th scope="col">ประเภทผู้ใช้งาน</th>
       <th scope="col">แก้ไขข้อมูล</th>
       <th scope="col">รายละเอียดเพิ่มเติม</th>
     </tr>
@@ -22,7 +22,7 @@
       <td scope="row">{{$list->id}}</td>
       <td scope="row">{{$list->name}}</td>
       <td scope="row">{{$list->email}}</td>
-      <td scope="row">{{$list->phone}}</td>
+      <td scope="row">{{$list->usr_lvl}}</td>
       <td scope="row"><a herf="#">แก้ไข</a></td>
       <td scope="row">รายละเอียด</td>
     </tr>
