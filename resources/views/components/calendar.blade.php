@@ -18,8 +18,13 @@
           <div class="mb-3">
             <div class="row">
               <div class="col">
-                <label for="booking_number" class="col-form-label">Booking Number:</label>
+                <label for="booking_number" class="col-form-label">รหัสการจอง:</label>
                 <input type="text" class="form-control" id="booking_number">
+                <span id="bookingNumberError" class="text-danger"></span>
+              </div>
+              <div class="col">
+                <label for="awNumber" class="col-form-label">เลขที่ อว:</label>
+                <input type="text" class="form-control" id="awNumber">
                 <span id="bookingNumberError" class="text-danger"></span>
               </div>
               <div class="col">
@@ -30,14 +35,14 @@
             </div>
           </div>
           <div class="mb-3">
-            <label for="title" class="col-form-label">หัวข้อ:</label>
-            <input type="text" class="form-control" id="title">
-            <span id="titleError" class="text-danger"></span>
+            <label for="detail" class="col-form-label">เนื้อหา:</label>
+            <textarea class="form-control" id="detail" placeholder="เนื่องด้วย ภาควิชา..." style="Height:200px;"></textarea>
+            <span id="detailError" class="text-danger"></span>
           </div>
           <div class="mb-3">
-            <label for="detail" class="col-form-label">รายละเอียด:</label>
-            <textarea class="form-control" id="detail"></textarea>
-            <span id="detailError" class="text-danger"></span>
+            <label for="title" class="col-form-label">เหตุผลที่ขอใช้:</label>
+            <input type="text" class="form-control" id="title">
+            <span id="titleError" class="text-danger"></span>
           </div>
           <div class="mb-3">
             <div class="row">
@@ -83,10 +88,8 @@
                 <label for="place" class="col-form-label">ขอบเขตการใช้งาน:</label>
                 <select class="form-select" id="place" aria-label="Default select example">
                   <option selected>กรุณาเลือกขอบเขตการใช้งาน</option>
-                  <option value="1">ภายในมหาวิทยาลัย</option>
-                  <option value="2">ภายนอกมหาวิทยาลัย</option>
-                  <option value="3">ภายในจังหวัด</option>
-                  <option value="4">ภายนอกจังหวัด</option>
+                  <option value="1">ภายในมหาลัยและอำเภอเมือง</option>
+                  <option value="2">ภายนอกมหาลัย(ยกเว้นอำเภอเมือง)</option>
                 </select>
               </div>
               <div class="col">
@@ -99,22 +102,6 @@
             <div class="row">
               <div class="col">
                 เพิ่มเติม:
-              </div>
-              <div class="col">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="option1">
-                  <label class="form-check-label" for="option1">
-                    น้ำมันเต็มถัง
-                  </label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="option2">
-                  <label class="form-check-label" for="option2">
-                    เครื่องเสียง
-                  </label>
-                </div>
               </div>
               <div class="col">
                 <div class="form-check">
