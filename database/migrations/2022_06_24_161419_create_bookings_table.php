@@ -16,6 +16,7 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->string('booking_number');
+            $table->string('numbers');//เลข อว.
             $table->string('user'); //คนจอง: username คนจอง
             $table->string('title');
             $table->integer('chauffeur')->default(1); //คนขับ: รหัสคนขับ 1:ไม่ระบุ
