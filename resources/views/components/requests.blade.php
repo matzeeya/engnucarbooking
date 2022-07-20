@@ -32,7 +32,7 @@
               ผู้ขอใช้: {{$list->user}}
               สำหรับแผนก: {{$list->faculty}}
             </p>
-            <p class="mb-0 opacity-75">จองใช้รถเพื่อ: {{$list->title}}</p>
+            <p class="mb-0 opacity-75">จองใช้รถเพื่อ: {{$list->detail}}</p>
           </div>
           <small class="opacity-50 text-nowrap">
             @if($list->status == 0)

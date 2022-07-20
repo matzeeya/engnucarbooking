@@ -23,9 +23,9 @@
                 <span id="bookingNumberError" class="text-danger"></span>
               </div>
               <div class="col">
-                <label for="awNumber" class="col-form-label">เลขที่ อว:</label>
-                <input type="text" class="form-control" id="awNumber">
-                <span id="bookingNumberError" class="text-danger"></span>
+                <label for="numbers" class="col-form-label">เลขที่ อว:</label>
+                <input type="text" class="form-control" id="numbers">
+                <span id="NumbersError" class="text-danger"></span>
               </div>
               <div class="col">
                 <label for="phone" class="col-form-label">เบอร์ภายใน:</label>
@@ -100,22 +100,22 @@
           </div>
           <div class="mb-3">
             <div class="row">
-              <div class="col">
-                เพิ่มเติม:
-              </div>
-              <div class="col">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="useto1">
-                  <label class="form-check-label" for="useto1">
-                    จองให้ผู้อื่น
-                  </label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-check">
+              <div class="col-2">
+                การจองใช้งาน:
+            </div>
+              <div class="col-3">
+                <div class="form-check is-left">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="useto2" checked>
                   <label class="form-check-label" for="useto2">
                     จองใช้งานเอง
+                  </label>
+                </div>
+              </div>
+              <div class="col-7">
+                <div class="form-check is-left">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="useto1">
+                  <label class="form-check-label" for="useto1">
+                    จองให้ผู้อื่น
                   </label>
                 </div>
               </div>
