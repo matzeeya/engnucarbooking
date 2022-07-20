@@ -60,15 +60,24 @@ class PdfController extends Controller
           $this->fpdf->SetXY(20,8);
           $this->fpdf->Cell(170,24,iconv( 'UTF-8','cp874' , 'บันทึกข้อความ' ),0,1,'C',false);
 
+          $this->fpdf->SetFont('THSarabun','B',16);
+          $this->fpdf->Text( 26 , 40 ,  iconv( 'UTF-8','cp874' , 'ส่วนราชการ ' ));
+          $this->fpdf->Text( 142 , 40 ,  iconv( 'UTF-8','cp874' , 'โทร. ' ));
+          $this->fpdf->Text( 26 , 48 ,  iconv( 'UTF-8','cp874' , 'ที่ ' ));
+          $this->fpdf->Text( 100 , 48 ,  iconv( 'UTF-8','cp874' , 'วันที่ ' ));
+          $this->fpdf->Text( 26 , 56 ,  iconv( 'UTF-8','cp874' , 'เรื่อง ' ));
+          $this->fpdf->Text( 26 , 68 ,  iconv( 'UTF-8','cp874' , 'เรียน ' ));
+
           $this->fpdf->SetFont('THSarabun','',16);
-          $this->fpdf->Text( 26 , 40 ,  iconv( 'UTF-8','cp874' , 'ส่วนราชการ คณะวิศวกรรมศาสตร์ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ โทร. '.$data->phone ));
-          $this->fpdf->Text( 26 , 48 ,  iconv( 'UTF-8','cp874' , 'ที่ อว ๐๖๐๓  ' ));
-          $this->fpdf->Text( 100 , 48 ,  iconv( 'UTF-8','cp874' , 'วันที่ 20 กรกฏาคม 2565' ));
-          $this->fpdf->Text( 26 , 56 ,  iconv( 'UTF-8','cp874' , 'เรื่อง  ขออนุมัติใช้'.$data->type.' พร้อมพนักงานขับรถ' ));
+          $this->fpdf->Text( 46 , 40 ,  iconv( 'UTF-8','cp874' , 'คณะวิศวกรรมศาสตร์ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ ' ));
+          $this->fpdf->Text( 150 , 40 ,  iconv( 'UTF-8','cp874' , $data->phone ));
+          $this->fpdf->Text( 30 , 48 ,  iconv( 'UTF-8','cp874' , 'อว ๐๖๐๓  ' ));
+          $this->fpdf->Text( 110 , 48 ,  iconv( 'UTF-8','cp874' , '20 กรกฏาคม 2565' ));
+          $this->fpdf->Text( 36 , 56 ,  iconv( 'UTF-8','cp874' , 'ขออนุมัติใช้'.$data->type.' พร้อมพนักงานขับรถ' ));
           //$this->fpdf->Line( 26 , 60 , 180 , 60);
 
-          $this->fpdf->Text( 26 , 66 ,  iconv( 'UTF-8','cp874' , 'เรียน คณบดีคณะวิศวกรรมศาสตร์' ));
-          $this->fpdf->Text( 50 , 74 ,  iconv( 'UTF-8','cp874' , 'เนื่องด้วย  ..................................' ));
+          $this->fpdf->Text( 36 , 68 ,  iconv( 'UTF-8','cp874' , 'คณบดีคณะวิศวกรรมศาสตร์' ));
+          $this->fpdf->Text( 50 , 76 ,  iconv( 'UTF-8','cp874' , 'เนื่องด้วย  ..................................' ));
           //$this->fpdf->Text( 26 , 114 ,  iconv( 'UTF-8','cp874' , 'โดยมีเหตุผลในการใช้รถ' ));
           //$this->fpdf->Text( 26 , 121 ,  iconv( 'UTF-8','cp874' , 'เพื่อ .......................' ));
           //$this->fpdf->Text( 26 , 128 ,  iconv( 'UTF-8','cp874' , 'เบอร์โทรติดต่อ' ));
@@ -84,11 +93,11 @@ class PdfController extends Controller
           $this->fpdf->SetXY(26,173);
           $this->fpdf->Cell(36,8,iconv( 'UTF-8','cp874' , 'เวลาที่เดินทาง: ' ),1,1,'L',false);
           $this->fpdf->SetXY(62,173);
-          $this->fpdf->Cell(120,8,iconv( 'UTF-8','cp874' , ' 22 ก.ค. 65 เวลา 08:00' ),1,1,'L',false);
+          $this->fpdf->Cell(120,8,iconv( 'UTF-8','cp874' , ' '.$data->start_date.' เวลา '.$data->start_time.' น.' ),1,1,'L',false);
           $this->fpdf->SetXY(26,181);
           $this->fpdf->Cell(36,8,iconv( 'UTF-8','cp874' , 'เวลาเดินทางกลับ: ' ),1,1,'L',false);
           $this->fpdf->SetXY(62,181);
-          $this->fpdf->Cell(120,8,iconv( 'UTF-8','cp874' , ' 24 ก.ค. 65 เวลา 17:00' ),1,1,'L',false);
+          $this->fpdf->Cell(120,8,iconv( 'UTF-8','cp874' , ' '.$data->end_date.' เวลา '.$data->end_time.' น.' ),1,1,'L',false);
           $this->fpdf->SetXY(26,189);
           $this->fpdf->Cell(36,8,iconv( 'UTF-8','cp874' , 'รถที่ขอใช้: ' ),1,1,'L',false);
           $this->fpdf->SetXY(62,189);
