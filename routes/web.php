@@ -29,6 +29,7 @@ Route::get('/home',function(){
 
 // Calendar routes
 Route::get('/dashboard', [CalendarController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/get', [CalendarController::class, 'genBookingNumber'])->name('dashboard.get');
 Route::post('/dashboard/store', [CalendarController::class, 'store'])->name('dashboard.store');
 Route::get('/dashboard/view/{id}', [CalendarController::class, 'view'])->name('dashboard.view');
 Route::post('/dashboard/edit/{id}', [CalendarController::class, 'edit'])->name('dashboard.edit');

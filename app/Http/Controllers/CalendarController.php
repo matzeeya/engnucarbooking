@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CalendarController extends Controller
 {
@@ -119,4 +120,14 @@ class CalendarController extends Controller
             'color' => $color ? $color: '',
           ]);
         }
+
+        public function genBookingNumber() //แสดงผลการจอง
+      {
+        //$getId = Booking::all();
+        //return $getId;
+        $getId = DB::table('bookings')
+                ->select('bookings.id')
+                ->get();
+        return $getId;
+      }
 }

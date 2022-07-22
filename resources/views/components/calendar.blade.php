@@ -19,7 +19,7 @@
             <div class="row">
               <div class="col">
                 <label for="booking_number" class="col-form-label">รหัสการจอง:</label>
-                <input type="text" class="form-control" id="booking_number">
+                <input type="text" class="form-control" id="booking_number" disabled>
                 <span id="bookingNumberError" class="text-danger"></span>
               </div>
               <div class="col">
@@ -197,7 +197,6 @@
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
     $('#userRequest').hide();
     function clearData(){
         $('#booking_number').val('');
@@ -214,6 +213,32 @@
         $('#vehicle_id').prop('selectedIndex', 0);
         $('#status').prop('selectedIndex', 0);
     }
+    //get booking_number
+    var getId = '';
+    $.ajax({
+    url:"{{ url('dashboard'), '' }}" +'/get',
+    method:"GET",
+    success:function(res)
+      {
+        var id = res.length;
+        var year = parseInt(new Date().getFullYear())+543;
+        if(id == 0){
+          getId = 'ENGV001' + year;
+        }else if(id>=1 && id<9){
+          getId = 'ENGV00'+(id+1) + year;
+        }else if(id>=9 && id<99){
+          getId = 'ENGV0'+(id+1) + year;
+        }else if(id>=99 && id<367){
+          getId = 'ENGV'+(id+1) + year;
+        }else{
+          getId = 'ENGV000' + year;
+        } 
+      },
+      error:function(err)
+      {
+        console.log(err);
+      }
+    });
     var booking = @json($events);
     $('#calendar').fullCalendar({
       header: {
@@ -225,8 +250,10 @@
       selectable: true,
       selectHelper: true,
       select: function(start, end, allDays) {
+        //console.log(getId);
         $('#bookingModal').modal('toggle');
         clearData();
+        $('#booking_number').val(getId);
         $('#divAdmin').hide();
         $('#approveBtn').hide();
         $('#saveBtn').show();
