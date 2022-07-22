@@ -54,3 +54,4 @@ Route::get('/dashboard/{id}', [MyBookingController::class, 'index'])->name('dash
 
 //generate pdf
 Route::get('/dashboard/pdf/{id}', [PdfController::class, 'index'])->name('pdf');
+Route::get('/dashboard/memo/{id}', [PdfController::class, 'memo'])->name('memo');
