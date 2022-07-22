@@ -220,19 +220,24 @@
     method:"GET",
     success:function(res)
       {
-        var id = res.length;
         var year = parseInt(new Date().getFullYear())+543;
-        if(id == 0){
-          getId = 'ENGV001' + year;
-        }else if(id>=1 && id<9){
-          getId = 'ENGV00'+(id+1) + year;
-        }else if(id>=9 && id<99){
-          getId = 'ENGV0'+(id+1) + year;
-        }else if(id>=99 && id<367){
-          getId = 'ENGV'+(id+1) + year;
+        if(res.length>0){
+          var id = parseInt(res[0].booking_number.substring(4, 7));
+          if(id == 0){
+            getId = 'ENGV001' + year;
+          }else if(id>=1 && id<9){
+            getId = 'ENGV00'+(id+1) + year;
+          }else if(id>=9 && id<99){
+            getId = 'ENGV0'+(id+1) + year;
+          }else if(id>=99 && id<366){
+            getId = 'ENGV'+(id+1) + year;
+          }else{
+            getId = 'ENGV000' + year;
+          } 
         }else{
-          getId = 'ENGV000' + year;
-        } 
+          getId = 'ENGV001' + year;
+        }
+        //console.log('booking ',getId);
       },
       error:function(err)
       {

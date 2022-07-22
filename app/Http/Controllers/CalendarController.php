@@ -126,7 +126,9 @@ class CalendarController extends Controller
         //$getId = Booking::all();
         //return $getId;
         $getId = DB::table('bookings')
-                ->select('bookings.id')
+                ->orderBy('id', 'desc')
+                ->limit(1)
+                ->select('id','booking_number')
                 ->get();
         return $getId;
       }
