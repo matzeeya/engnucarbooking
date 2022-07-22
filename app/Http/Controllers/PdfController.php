@@ -78,36 +78,37 @@ class PdfController extends Controller
           //$this->fpdf->Line( 26 , 60 , 180 , 60);
 
           $this->fpdf->Text( 36 , 68 ,  iconv( 'UTF-8','cp874' , 'คณบดีคณะวิศวกรรมศาสตร์' ));
-          $this->fpdf->Text( 50 , 76 ,  iconv( 'UTF-8','cp874' , 'เนื่องด้วย  ..................................' ));
+          $this->fpdf->SetXY(25,70);
+          $this->fpdf->MultiCell( 158 , 7 ,  iconv( 'UTF-8','cp874' , '                    '. $data->detail ),0,'L');
           //$this->fpdf->Text( 26 , 114 ,  iconv( 'UTF-8','cp874' , 'โดยมีเหตุผลในการใช้รถ' ));
           //$this->fpdf->Text( 26 , 121 ,  iconv( 'UTF-8','cp874' , 'เพื่อ .......................' ));
           //$this->fpdf->Text( 26 , 128 ,  iconv( 'UTF-8','cp874' , 'เบอร์โทรติดต่อ' ));
           //$this->fpdf->Text( 26 , 135 ,  iconv( 'UTF-8','cp874' , '08x-000-0000' ));
-          $this->fpdf->Text( 50 , 142 ,  iconv( 'UTF-8','cp874' , 'ในการนี้ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ ได้ขออนุมัติใช้รถ' ));
-          $this->fpdf->Text( 26 , 149 ,  iconv( 'UTF-8','cp874' , 'พร้อมพนักงานขับรถ จำนวน 1 คัน รหัสการจอง '.$data->booking_number.' ในวันที่ 20 กรกฏาคม' ));
-          $this->fpdf->Text( 26 , 157 ,  iconv( 'UTF-8','cp874' , '2565 โดยมีรายละเอียดดังนี้' ));
+          $this->fpdf->Text( 50 , 103 ,  iconv( 'UTF-8','cp874' , 'ในการนี้ ภาควิชาวิศวกรรมไฟฟ้าและคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ ได้ขออนุมัติใช้รถ' ));
+          $this->fpdf->Text( 26 , 110 ,  iconv( 'UTF-8','cp874' , 'พร้อมพนักงานขับรถ จำนวน 1 คัน รหัสการจอง '.$data->booking_number.' ในวันที่ 20 กรกฏาคม 2565' ));
+          $this->fpdf->Text( 26 , 117 ,  iconv( 'UTF-8','cp874' , 'โดยมีรายละเอียดดังนี้' ));
 
-          $this->fpdf->SetXY(26,165);
+          $this->fpdf->SetXY(26,125);
           $this->fpdf->Cell(36,8,iconv( 'UTF-8','cp874' , 'สถานที่ไป: ' ),1,1,'L',false);
-          $this->fpdf->SetXY(62,165);
+          $this->fpdf->SetXY(62,125);
           $this->fpdf->Cell(120,8,iconv( 'UTF-8','cp874' , ' '.$data->location ),1,1,'L',false);
-          $this->fpdf->SetXY(26,173);
+          $this->fpdf->SetXY(26,133);
           $this->fpdf->Cell(36,8,iconv( 'UTF-8','cp874' , 'เวลาที่เดินทาง: ' ),1,1,'L',false);
-          $this->fpdf->SetXY(62,173);
+          $this->fpdf->SetXY(62,133);
           $this->fpdf->Cell(120,8,iconv( 'UTF-8','cp874' , ' '.$data->start_date.' เวลา '.$data->start_time.' น.' ),1,1,'L',false);
-          $this->fpdf->SetXY(26,181);
+          $this->fpdf->SetXY(26,141);
           $this->fpdf->Cell(36,8,iconv( 'UTF-8','cp874' , 'เวลาเดินทางกลับ: ' ),1,1,'L',false);
-          $this->fpdf->SetXY(62,181);
+          $this->fpdf->SetXY(62,141);
           $this->fpdf->Cell(120,8,iconv( 'UTF-8','cp874' , ' '.$data->end_date.' เวลา '.$data->end_time.' น.' ),1,1,'L',false);
-          $this->fpdf->SetXY(26,189);
+          $this->fpdf->SetXY(26,149);
           $this->fpdf->Cell(36,8,iconv( 'UTF-8','cp874' , 'รถที่ขอใช้: ' ),1,1,'L',false);
-          $this->fpdf->SetXY(62,189);
+          $this->fpdf->SetXY(62,149);
           $this->fpdf->Cell(120,8,iconv( 'UTF-8','cp874' , ' '.$data->type ),1,1,'L',false);
 
-          $this->fpdf->Text( 50 , 206 ,  iconv( 'UTF-8','cp874' , 'จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ' ));
-          $this->fpdf->Text( 100 , 233 ,  iconv( 'UTF-8','cp874' , 'ลงชื่อ.....................................ผู้ขอใช้รถ' ));
-          $this->fpdf->Text( 109 , 242 ,  iconv( 'UTF-8','cp874' , '( '.$data->name.' )' ));
-          $this->fpdf->Text( 102 , 256 ,  iconv( 'UTF-8','cp874' , 'ลงชื่อ.....................................ผู้อนุมัติ' ));
+          $this->fpdf->Text( 50 , 166 ,  iconv( 'UTF-8','cp874' , 'จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ' ));
+          $this->fpdf->Text( 100 , 203 ,  iconv( 'UTF-8','cp874' , 'ลงชื่อ.....................................ผู้ขอใช้รถ' ));
+          $this->fpdf->Text( 109 , 212 ,  iconv( 'UTF-8','cp874' , '( '.$data->name.' )' ));
+          $this->fpdf->Text( 102 , 236 ,  iconv( 'UTF-8','cp874' , 'ลงชื่อ.....................................ผู้อนุมัติ' ));
           //$this->fpdf->Text( 102 , 264 ,  iconv( 'UTF-8','cp874' , '(..........................................................)' ));
         }
         $this->fpdf->Output();

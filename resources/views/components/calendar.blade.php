@@ -396,9 +396,9 @@
       $('#saveBtn').unbind();
     });
 
-    $('#location').select(function() {
+    /*$('#location').select(function() {
         console.log("hi");
-    });
+    });*/
 
     //get vehicle type
     $.ajax({

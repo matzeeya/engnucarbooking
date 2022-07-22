@@ -22,7 +22,7 @@ class CreateBookingsTable extends Migration
             $table->integer('chauffeur')->default(1); //คนขับ: รหัสคนขับ 1:ไม่ระบุ
             $table->integer('vehicle'); //ยานพาหนะที่ต้องการจอง: รถตู้/รถกระบะ
             $table->integer('vehicle_id')->nullable(true); //ยานพาหนะที่ได้รับการอนุมัติ: รหัสรถที่ได้
-            $table->string('detail')->nullable(true);
+            $table->text('detail')->nullable(true);
             $table->integer('travelers')->nullable(true); //จำนวนผู้โดยสาร
             $table->string('options')->nullable(true); //ออฟชั่นเสริม รหัส option
             $table->date('start_date');
