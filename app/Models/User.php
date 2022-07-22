@@ -32,6 +32,7 @@ class User extends Authenticatable implements LdapAuthenticatable
         'faculty',
         'department',
         'branch',
+        'userId',
         'usr_lvl',
         'active',
         'email',

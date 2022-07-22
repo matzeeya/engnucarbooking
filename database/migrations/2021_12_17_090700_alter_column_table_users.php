@@ -29,6 +29,7 @@ class AlterColumnTableUsers extends Migration
             $table->integer('faculty')->default(1); //รหัสคณะ
             $table->integer('department')->nullable(true); //รหัสภาควิชา
             $table->integer('branch')->nullable(true); //รหัสสาขาวิชา
+            $table->string('userId')->nullable(true); //เบอร์ติดต่อ
             $table->string('usr_lvl')->default('member');
             $table->integer('usr_type')->default(4); //ประเภทผู้ใช้: 1:ผู้ดูแลระบบ / 2:เจ้าหน้าที่ / 3:คนขับรถ / 4:ผู้ใช้
             $table->integer('active')->default(1); //not login
