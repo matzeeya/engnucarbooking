@@ -220,7 +220,7 @@ class PdfController extends Controller
           $this->fpdf->Text(131, 115, iconv('UTF-8', 'cp874', '(วัน เดือน ปี)'));
           $this->fpdf->Text(81, 115, iconv('UTF-8', 'cp874', $create_date[0]));
           $this->fpdf->Line(80,116,129,116);
-          }
+        }
 
           $this->fpdf->Output();
 

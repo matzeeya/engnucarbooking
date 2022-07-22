@@ -24,6 +24,7 @@ class AlterColumnTableUsers extends Migration
             $table->string('domain')->nullable(true);
             $table->string('firstname')->nullable($value = true);
             $table->string('lastname')->nullable($value = true);
+            $table->string('position')->nullable($value = true);
             $table->string('phone')->nullable(true); //เบอร์ติดต่อ
             $table->integer('faculty')->default(1); //รหัสคณะ
             $table->integer('department')->nullable(true); //รหัสภาควิชา
