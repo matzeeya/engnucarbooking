@@ -156,70 +156,70 @@ class PdfController extends Controller
           $this->fpdf->Line(158,31,170,31);
 
           //topic
-          $this->fpdf->Text( 20, 42, iconv( 'UTF-8','cp874', 'เรียน (ผู้มีอำนาจสั่งใช้รถ) หัวหน้าสำนักงานเลขานุการคณะวิศวกรรมศาสตร์'));
+          $this->fpdf->Text( 30, 42, iconv( 'UTF-8','cp874', 'เรียน (ผู้มีอำนาจสั่งใช้รถ) หัวหน้าสำนักงานเลขานุการคณะวิศวกรรมศาสตร์'));
 
           // detail
           // ชื่อ
-          $this->fpdf->Text( 36, 53, iconv( 'UTF-8', 'cp874', 'ข้าพเจ้า'));
-          $this->fpdf->Text( 49, 53, iconv( 'UTF-8', 'cp874', $data->name));
-          $this->fpdf->Line(48,54,100,54);
+          $this->fpdf->Text( 46, 53, iconv( 'UTF-8', 'cp874', 'ข้าพเจ้า'));
+          $this->fpdf->Text( 59, 53, iconv( 'UTF-8', 'cp874', $data->name));
+          $this->fpdf->Line(58,54,110,54);
 
           //ตำแหน่ง
-          $this->fpdf->Text(102, 53, iconv( 'UTF-8', 'cp874', 'ตำแหน่ง'));
-          $this->fpdf->Text(120, 53, iconv( 'UTF-8', 'cp874', ' '));
-          $this->fpdf->Line(115,54,170,54);
+          $this->fpdf->Text(112, 53, iconv( 'UTF-8', 'cp874', 'ตำแหน่ง'));
+          $this->fpdf->Text(130, 53, iconv( 'UTF-8', 'cp874', ' '));
+          $this->fpdf->Line(125,54,180,54);
 
           //สังกัด
-          $this->fpdf->Text(20, 62, iconv('UTF-8', 'cp874', 'สังกัด'));
-          $this->fpdf->Text(31, 62, iconv( 'UTF-8', 'cp874', ' '));
-          $this->fpdf->Line(30,63,75,63);
+          $this->fpdf->Text(30, 62, iconv('UTF-8', 'cp874', 'สังกัด'));
+          $this->fpdf->Text(41, 62, iconv( 'UTF-8', 'cp874', ' '));
+          $this->fpdf->Line(40,63,85,63);
 
           //ขออนุญาต
-          $this->fpdf->Text(76, 62, iconv('UTF-8', 'cp874', 'ขออนุญาตใช้รถ(สถานที่ไป)'));
-          $this->fpdf->Text(121, 62, iconv( 'UTF-8', 'cp874', $data->location));
-          $this->fpdf->Line(120,63,170,63);
+          $this->fpdf->Text(86, 62, iconv('UTF-8', 'cp874', 'ขออนุญาตใช้รถ(สถานที่ไป)'));
+          $this->fpdf->Text(131, 62, iconv( 'UTF-8', 'cp874', $data->location));
+          $this->fpdf->Line(130,63,180,63);
 
           //เพื่อ
-          $this->fpdf->Text(20, 70, iconv('UTF-8', 'cp874', 'เพื่อ'));
-          $this->fpdf->Text(28,70, iconv('UTF-8', 'cp874', $data->detail));
-          $this->fpdf->Line(27,71,125,71);
+          $this->fpdf->Text(30, 70, iconv('UTF-8', 'cp874', 'เพื่อ'));
+          $this->fpdf->Text(38,70, iconv('UTF-8', 'cp874', $data->detail));
+          $this->fpdf->Line(37,71,135,71);
 
           //คนนั่ง
-          $this->fpdf->Text(128, 70, iconv('UTF-8', 'cp874', 'มีคนนั่ง'));
-          $this->fpdf->Text(145,70, iconv('UTF-8', 'cp874', $data->travelers));
-          $this->fpdf->Line(141,71,164,71);
-          $this->fpdf->Text(165, 70, iconv('UTF-8', 'cp874', 'คน'));
+          $this->fpdf->Text(138, 70, iconv('UTF-8', 'cp874', 'มีคนนั่ง'));
+          $this->fpdf->Text(155,70, iconv('UTF-8', 'cp874', $data->travelers));
+          $this->fpdf->Line(151,71,164,71);
+          $this->fpdf->Text(175, 70, iconv('UTF-8', 'cp874', 'คน'));
 
           //วันที่
-          $this->fpdf->Text(20, 78, iconv('UTF-8', 'cp874', 'ในวันที่'));
-          $this->fpdf->Text(34,78, iconv('UTF-8', 'cp874', $data->start_date));
-          $this->fpdf->Line(33,79,60,79);
+          $this->fpdf->Text(30, 78, iconv('UTF-8', 'cp874', 'ในวันที่'));
+          $this->fpdf->Text(44,78, iconv('UTF-8', 'cp874', $data->start_date));
+          $this->fpdf->Line(43,79,70,79);
 
-          $this->fpdf->Text(62, 78, iconv('UTF-8', 'cp874', 'เวลา'));
-          $this->fpdf->Text(71, 78, iconv('UTF-8', 'cp874', $data->start_time.' น.'));
-          $this->fpdf->Line(70,79,92,79);
+          $this->fpdf->Text(72, 78, iconv('UTF-8', 'cp874', 'เวลา'));
+          $this->fpdf->Text(81, 78, iconv('UTF-8', 'cp874', $data->start_time.' น.'));
+          $this->fpdf->Line(80,79,102,79);
 
-          $this->fpdf->Text(93, 78, iconv('UTF-8', 'cp874', 'ถึงวันที่'));
-          $this->fpdf->Text(107, 78, iconv('UTF-8', 'cp874', $data->end_date));
-          $this->fpdf->Line(106,79,133,79);
+          $this->fpdf->Text(103, 78, iconv('UTF-8', 'cp874', 'ถึงวันที่'));
+          $this->fpdf->Text(117, 78, iconv('UTF-8', 'cp874', $data->end_date));
+          $this->fpdf->Line(116,79,143,79);
 
-          $this->fpdf->Text(134, 78, iconv('UTF-8', 'cp874', 'เวลา'));
-          $this->fpdf->Text(143, 78, iconv('UTF-8', 'cp874', $data->end_time.' น.'));
-          $this->fpdf->Line(142,79,170,79);
+          $this->fpdf->Text(144, 78, iconv('UTF-8', 'cp874', 'เวลา'));
+          $this->fpdf->Text(153, 78, iconv('UTF-8', 'cp874', $data->end_time.' น.'));
+          $this->fpdf->Line(152,79,180,79);
 
           //หมายเลขทะเบียน
-          $this->fpdf->Text(20, 87, iconv('UTF-8', 'cp874', 'ประเภทรถที่ต้องการจอง'));
-          $this->fpdf->Text(60, 87, iconv('UTF-8', 'cp874', $data->type));
-          $this->fpdf->Line(59,88,170,88);
+          $this->fpdf->Text(30, 87, iconv('UTF-8', 'cp874', 'ประเภทรถที่ต้องการจอง'));
+          $this->fpdf->Text(70, 87, iconv('UTF-8', 'cp874', $data->type));
+          $this->fpdf->Line(69,88,180,88);
 
           //ผู้ขออนุญาต
-          $this->fpdf->Text(131, 105, iconv('UTF-8', 'cp874', 'ผู้ขออนุญาต'));
-          $this->fpdf->Text(81, 105, iconv('UTF-8', 'cp874', $data->name));
-          $this->fpdf->Line(80,106,129,106);
+          $this->fpdf->Text(141, 105, iconv('UTF-8', 'cp874', 'ผู้ขออนุญาต'));
+          $this->fpdf->Text(91, 105, iconv('UTF-8', 'cp874', $data->name));
+          $this->fpdf->Line(90,106,139,106);
 
-          $this->fpdf->Text(131, 115, iconv('UTF-8', 'cp874', '(วัน เดือน ปี)'));
-          $this->fpdf->Text(81, 115, iconv('UTF-8', 'cp874', $create_date[0]));
-          $this->fpdf->Line(80,116,129,116);
+          $this->fpdf->Text(141, 115, iconv('UTF-8', 'cp874', '(วัน เดือน ปี)'));
+          $this->fpdf->Text(91, 115, iconv('UTF-8', 'cp874', $create_date[0]));
+          $this->fpdf->Line(90,116,139,116);
         }
 
           $this->fpdf->Output();
