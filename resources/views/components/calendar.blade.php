@@ -93,7 +93,7 @@
                 </select>
               </div>
               <div class="col">
-                <label for="location" class="col-form-label">สถานที่ปลายทาง:</label>
+                <label for="location" class="col-form-label">สถานที่ปลายทาง (ระบุสถานที่):</label>
                 <input type="text" class="form-control" id="location">
               </div>
             </div>
@@ -236,6 +236,7 @@
         $('#end_time').val(moment().format('h:mm:ss a'));*/
         $('#saveBtn').click(function() {
           var booking_number = $('#booking_number').val();
+          var numbers = $('#numbers').val();
           var username = $('#username').val();
           var title = $('#title').val();
           var start_date = $('#start_date').val();
@@ -255,6 +256,7 @@
             dataType:'json',
             data:{
               booking_number,
+              numbers,
               username,
               title,
               start_date,
@@ -301,6 +303,7 @@
             $('#saveBtn').hide();
             $('#approveBtn').show();
             $('#booking_number').val(response.booking_number); //.prop('disabled', true)
+            $('#numbers').val(response.numbers); //.prop('disabled', true)
             $('#username').val(response.user);//.prop("type", "text")
             $('#title').val(response.title);
             $('#start_date').val(response.start_date);
@@ -360,6 +363,11 @@
     $("#bookingModal").on("hidden.bs.modal", function () {
       $('#saveBtn').unbind();
     });
+
+    $('#location').select(function() {
+        console.log("hi");
+    });
+
     //get vehicle type
     $.ajax({
       url:"{{ url('dashboard'), '' }}" +'/type/',

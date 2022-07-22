@@ -42,6 +42,7 @@ class CalendarController extends Controller
 
       $booking = Booking::create([
         'booking_number' => $request->booking_number,
+        'numbers' => $request->numbers,
         'user' => $request->username,
         'title' => $request->title,
         'start_date' => $request->start_date,
